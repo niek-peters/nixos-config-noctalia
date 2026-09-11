@@ -23,6 +23,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/acer-laptop/configuration.nix
+        ./hosts/acer-laptop/hardware-configuration.nix
         ./nixosModules
 
         home-manager.nixosModules.home-manager {

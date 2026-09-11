@@ -1,4 +1,8 @@
 { pkgs, ... }: {
+  #imports = [
+  #  ./hardware-configuration.nix
+  #];
+
   # enable/disable nixosModules here once we make them togglable
 
 
