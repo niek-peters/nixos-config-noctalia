@@ -1,5 +1,7 @@
 { lib, ... }: {
   imports = [
     ./home-manager.nix
+    ./pc-base.nix
+    ./laptop.nix
   ];
 }
