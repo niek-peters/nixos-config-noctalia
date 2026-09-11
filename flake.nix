@@ -18,7 +18,7 @@
   };
 
   outputs = inputs@{ nixpkgs, ... }: {
-    nixosConfiguration.default = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/acer-laptop/configuration.nix
