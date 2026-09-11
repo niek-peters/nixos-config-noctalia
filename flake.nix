@@ -25,7 +25,7 @@
         ./hosts/acer-laptop/configuration.nix
         ./nixosModules
 
-        home-manager.nixosModules.home-manager = {
+        home-manager.nixosModules.home-manager {
           home-manager = {
             extraSpecialArgs = { inherit inputs; };
             useGlobalPkgs = true;
@@ -37,7 +37,7 @@
               ];
             };
           };
-        };
+        }
       ];
     };
 
