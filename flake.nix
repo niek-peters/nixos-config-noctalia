@@ -27,23 +27,5 @@
     };
 
     homeManagerModules.default = ./homeManagerModules;
-    #nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-    #  system = "x86_64-linux";
-    #  specialArgs = { inherit inputs; };
-    #  modules = [
-    #    ./configuration.nix
-    #    home-manager.nixosModules.home-manager {
-    #      home-manager = {
-    #        extraSpecialArgs = {
-    #          inherit inputs;
-    #        };
-    #        useGlobalPkgs = true;
-    #        useUserPackages = true;
-    #        users.niek = import ./home.nix;
-    #        backupFileExtension = "backup";
-    #      };
-    #    }
-    #  ];
-    #};
   };
 }
