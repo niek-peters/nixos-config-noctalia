@@ -13,6 +13,13 @@
     gitCredentialHelper.enable = true;
   };
 
+  programs.bash = {
+    enable = true;
+    shellAliases = {
+      nrs = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles-noctalia#nixos-acer-laptop";
+    };
+  };
+
   programs.fish = {
     enable = true;
     shellAliases = {
