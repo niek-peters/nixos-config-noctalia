@@ -1,6 +1,8 @@
 { inputs, ... }: {
   home-manager."niek" = {
     extraSpecialArgs = { inherit inputs; };
+    useGlobalPkgs = true;
+    useUserPackages = true;
     users = {
       modules = [
         ./home.nix
