@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  home-manager."niek" = {
+  inputs.home-manager."niek" = {
     extraSpecialArgs = { inherit inputs; };
     useGlobalPkgs = true;
     useUserPackages = true;
