@@ -16,7 +16,7 @@
   #  enable = true;
   #};
 
-  #environment.systemPackages = with pkgs; [
-  #  kitty
-  #];
+  environment.systemPackages = with pkgs; [
+    thunar
+  ];
 }

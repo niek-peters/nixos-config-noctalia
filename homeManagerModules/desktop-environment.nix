@@ -42,8 +42,11 @@ in
         ];
       };
       bind = [
-        (mkBind "SUPER + Q" ''close_window()'')
+        (mkBind "SUPER + Q" ''window.close()'')
         (mkBind "SUPER + T" ''exec_cmd("kitty")'')
+        (mkBind "SUPER + W" ''exec_cmd("helium")'')
+        (mkBind "SUPER + E" ''exec_cmd("thunar")'')
+        (mkBind "SUPER + C" ''exec_cmd("code")'')
         (mkBind "SUPER + Space" ''exec_cmd("noctalia-launcher")'')
         #(mkBind "SUPER + T" "kitty")
         #(mkBind "SUPER + Space" "noctalia-launcher")
