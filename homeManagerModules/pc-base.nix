@@ -27,7 +27,7 @@
       nrs = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles-noctalia#nixos-acer-laptop";
     };
     interactiveShellInit = ''
-      set fish_greeting ""
+      set fish_greeting
       starship init fish | source
     '';
   };
