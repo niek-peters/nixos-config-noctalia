@@ -129,9 +129,31 @@ in
         blur_popups = true;
       };
     };
-    #extraConfig = ''
-    #  hl.exec_cmd("noctalia")
-    #'';
+    extraConfig = ''
+      -- Safely check and load ~/.config/hypr/noctalia.lua if it exists
+      local noctalia_path = vim.fn.stdpath("config") .. "/noctalia.lua" -- or explicitly use os.getenv("HOME") .. "/.config/hypr/noctalia.lua"
+
+      -- Alternatively, using pure Lua file existence check:
+      local function file_exists(path)
+        local f = io.open(path, "r")
+        if f ~= nil then io.close(f) return true else return false end
+      end
+
+      local target_file = os.getenv("HOME") .. "/.config/hypr/noctalia.lua"
+
+      if file_exists(target_file) then
+          -- pcall ensures that if noctalia.lua has syntax errors, it won't crash entire Hyprland
+          local success, err = pcall(dofile, target_file)
+          if success then
+              -- Assuming your noctalia.lua defines a function named 'run' or similar
+              if type(apply_theme) == "function" then
+                  pcall(apply_theme)
+              end
+          else
+              print("Error loading noctalia.lua: " .. tostring(err))
+          end
+      end
+    '';
   };
 
   # Hint Electron apps to use Wayland
