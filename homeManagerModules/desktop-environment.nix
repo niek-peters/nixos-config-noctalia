@@ -7,7 +7,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
-      hl.exec_command("noctalia")
+      hl.exec_cmd("noctalia")
     '';
   };
 
