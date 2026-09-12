@@ -75,7 +75,6 @@
     wget
     speedtest-cli
     fastfetch
-    starship
     htop
   ];
 }
