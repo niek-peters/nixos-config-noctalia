@@ -5,7 +5,7 @@ let
       key
       (lib.generators.mkLuaInline "hl.dsp.${cmd}")
     ];
-  }
+  };
   mkExec = cmd: lib.generators.mkLuaInline ''
     function()
       hl.exec_cmd("${cmd}")
