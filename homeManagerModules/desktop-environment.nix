@@ -99,6 +99,13 @@ in
         enabled = true;
         default.path = "~/Pictures/Wallpapers/wallhaven-ymz61d.jpg";
       };
+      brightness.backlightDeviceMappings = [
+        {
+          output = "eDP-1";
+          device = "/sys/class/backlight/amdgpu_bl1";
+        }
+
+      ];
     };
   };
 }
