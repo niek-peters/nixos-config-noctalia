@@ -50,7 +50,7 @@
   users.users."niek" = {
     isNormalUser = true;
     description = "Niek Peters";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "render" ];
     packages = with pkgs; [];
   };
 
