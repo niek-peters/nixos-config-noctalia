@@ -25,31 +25,35 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations.nixos-acer-laptop = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./hosts/acer-laptop/configuration.nix
-        ./hosts/acer-laptop/hardware-configuration.nix
-        ./nixosModules
+  outputs =
+    { nixpkgs, home-manager, ... }@inputs:
+    {
+      nixosConfigurations.nixos-acer-laptop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/acer-laptop/configuration.nix
+          ./hosts/acer-laptop/hardware-configuration.nix
+          ./nixosModules
 
-        home-manager.nixosModules.home-manager {
-          home-manager = {
-            extraSpecialArgs = { inherit inputs; };
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.niek = {
-              imports = [
-                ./hosts/acer-laptop/home.nix
-                ./homeManagerModules
-              ];
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              extraSpecialArgs = { inherit inputs; };
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.niek = {
+                imports = [
+                  ./hosts/acer-laptop/home.nix
+                  ./homeManagerModules
+                ];
+              };
+              backupFileExtension = "backup";
             };
-          };
-        }
-      ];
-    };
+          }
+        ];
+      };
 
-    #homeManagerModules.default = ./homeManagerModules;
-  };
+      #homeManagerModules.default = ./homeManagerModules;
+    };
 }

@@ -41,6 +41,7 @@
         pad = "25x25";
         bold-text-in-bright = "no";
         gamma-correct-blending = "no";
+        include="~/.config/foot/themes/noctalia";
       };
       scrollback.lines = 10000;
       cursor = {
