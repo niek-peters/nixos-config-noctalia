@@ -1,4 +1,14 @@
-{ inputs, lib, ... }: {
+{ inputs, lib, ... }:
+let
+  mkBind = key: cmd: lib.generators.mkLuaInline ''hl.bind("${key}", hl.dsp.exec_cmd("${cmd}"))'';
+  mkExec = cmd: lib.generators.mkLuaInline ''hl.exec_cmd("${cmd}")'';
+  mkFunction = body: lib.generators.mkLuaInline ''
+    function()
+      ${body}
+    end
+  '';
+in
+{
   imports = [
     inputs.noctalia.homeModules.default
   ];  
@@ -11,13 +21,18 @@
       on = {
         _args = [
           "hyprland.start"
-          (lib.generators.mkLuaInline ''
-            function()
-              hl.exec_cmd("noctalia")
-            end
-          '')
+          (mkFunction (mkExec "noctalia"))
+          #(lib.generators.mkLuaInline ''
+          #  function()
+          #    hl.exec_cmd("noctalia")
+          #  end
+          #'')
         ];
       };
+      bind = [
+        (mkBind "SUPER + T" "kitty")
+        (mkBind "SUPER + Space" "noctalia-launcher")
+      ];
     };
     #extraConfig = ''
     #  hl.exec_cmd("noctalia")
