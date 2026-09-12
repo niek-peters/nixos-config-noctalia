@@ -25,7 +25,7 @@ let
     monitor = "eDP-1";
     persistent = true;
   };
-  mkFocusWorkspace = i: mkBindExec "SUPER + ${i}" "focus({ workspace = ${i} })";
+  mkFocusWorkspace = i: mkBindExec "SUPER + ${toString i}" "focus({ workspace = ${toString i} })";
 in
 {
   imports = [
