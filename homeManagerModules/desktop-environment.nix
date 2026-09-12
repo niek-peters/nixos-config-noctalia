@@ -50,12 +50,12 @@ in
           rounding = 8;
           rounding_power = 2;
 
-          #shadow = {
-          #  enabled = true;
-          #  range = 4;
-          #  render_power = 3;
-          #  color = "0xee1a1a1a";
-          #};
+          shadow = {
+            enabled = true;
+            range = 4;
+            render_power = 3;
+            color = "0xee1a1a1a";
+          };
 
           blur = {
             enabled = true;
@@ -69,6 +69,10 @@ in
           touchpad.natural_scroll = false;
           natural_scroll = false;
         };
+      };
+
+      monitor = {
+        scale = 1.25;
       };
 
       on = {
