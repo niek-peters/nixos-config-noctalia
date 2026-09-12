@@ -75,8 +75,8 @@ in
 
       monitor = {
         output = "eDP-1";
-        mode = "preferred";
-        position = "auto";
+        mode = "1920x1080@60.01";
+        position = "0x0";
         scale = 1;
       };
 
