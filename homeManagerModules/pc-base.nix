@@ -26,7 +26,10 @@
     shellAliases = {
       nrs = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles-noctalia#nixos-acer-laptop";
     };
-    interactiveShellInit = "starship init fish | source";
+    interactiveShellInit = ''
+      set fish_greeting ""
+      starship init fish | source
+    '';
   };
 
   programs.foot = {
