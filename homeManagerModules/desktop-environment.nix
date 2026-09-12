@@ -1,12 +1,16 @@
 { inputs, lib, ... }:
 let
   mkBind = key: cmd: lib.generators.mkLuaInline ''hl.bind("${key}", hl.dsp.exec_cmd("${cmd}"))'';
-  mkExec = cmd: lib.generators.mkLuaInline ''hl.exec_cmd("${cmd}")'';
-  mkFunction = body: lib.generators.mkLuaInline ''
+  mkExec = cmd: lib.generators.mkLuaInline ''
     function()
-      ${body}
+      hl.exec_cmd("${cmd}")
     end
   '';
+  #mkFunction = body: lib.generators.mkLuaInline ''
+  #  function()
+  #    ${body}
+  #  end
+  #'';
 in
 {
   imports = [
@@ -21,7 +25,7 @@ in
       on = {
         _args = [
           "hyprland.start"
-          (mkFunction (mkExec "noctalia"))
+          (mkExec "noctalia")
           #(lib.generators.mkLuaInline ''
           #  function()
           #    hl.exec_cmd("noctalia")
