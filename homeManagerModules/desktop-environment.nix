@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, lib, ... }: {
   imports = [
     inputs.noctalia.homeModules.default
   ];  
@@ -6,9 +6,22 @@
   programs.kitty.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
-    extraConfig = ''
-      hl.exec_cmd("noctalia")
-    '';
+
+    settings = {
+      on = {
+        _args = [
+          "hyprland.start"
+          (lib.generators.mkLuaInline ''
+            function()
+              hl.exec_cmd("noctalia")
+            end
+          '')
+        ];
+      };
+    };
+    #extraConfig = ''
+    #  hl.exec_cmd("noctalia")
+    #'';
   };
 
   # Hint Electron apps to use Wayland
