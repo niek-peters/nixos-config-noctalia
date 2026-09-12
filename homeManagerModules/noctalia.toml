@@ -19,7 +19,7 @@ order = [ "default" ]
 
     [bar.default]
     auto_hide = false
-    background_opacity = 1.0
+    background_opacity = 0.79999998211860657
     border = "outline"
     border_width = 0.0
     capsule = false
@@ -29,8 +29,8 @@ order = [ "default" ]
     capsule_padding = 6.0
     capsule_thickness = 0.75999999046325684
     center = [ "clock" ]
-    concave_edge_corners = true
-    contact_shadow = false
+    concave_edge_corners = false
+    contact_shadow = true
     enabled = true
     end = [
         "media",
@@ -50,16 +50,16 @@ order = [ "default" ]
     hover_highlight = true
     layer = "top"
     margin_edge = 0
-    margin_ends = 100
+    margin_ends = 0
     margin_opposite_edge = 0
     padding = 14
     panel_overlap = 1
-    position = "top"
-    radius = 12
-    radius_bottom_left = 12
-    radius_bottom_right = 12
-    radius_top_left = 12
-    radius_top_right = 12
+    position = "left"
+    radius = 0
+    radius_bottom_left = 0
+    radius_bottom_right = 0
+    radius_top_left = 0
+    radius_top_right = 0
     reserve_space = true
     scale = 1.0
     shadow = true
@@ -67,7 +67,7 @@ order = [ "default" ]
     smart_auto_hide = false
     start = [ "launcher", "wallpaper", "workspaces" ]
     thickness = 34
-    widget_spacing = 6
+    widget_spacing = 8
 
         [bar.default.dead_zone]
 
@@ -417,7 +417,7 @@ time_format = "{:%H:%M}"
     speed = 1.0
 
     [shell.greeter_sync]
-    auto_sync = false
+    auto_sync = true
 
     [shell.keyboard_layout]
 
@@ -460,7 +460,7 @@ time_format = "{:%H:%M}"
     session_placement = "attached"
     session_position = "auto"
     shadow = true
-    transparency_mode = "solid"
+    transparency_mode = "glass"
     wallpaper_placement = "attached"
     wallpaper_position = "auto"
 
@@ -627,6 +627,15 @@ transition_on_startup = false
     order = "random"
     recursive = true
 
+    [wallpaper.default]
+    path = "/home/niek/Pictures/Wallpapers/wallhaven-zyxvqy.jpg"
+
+    [wallpaper.last]
+    path = "/home/niek/Pictures/Wallpapers/wallhaven-zyxvqy.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/niek/Pictures/Wallpapers/wallhaven-zyxvqy.jpg"
+
 [weather]
 effects = true
 enabled = true
@@ -639,6 +648,12 @@ max_length = 260.0
 min_length = 80.0
 title_scroll = "none"
 type = "active_window"
+
+[widget.brightness]
+enabled = false
+
+[widget.clipboard]
+enabled = false
 
 [widget.cpu]
 stat = "cpu_usage"
@@ -666,6 +681,7 @@ type = "lock_keys"
 
 [widget.media]
 art_size = 16.0
+enabled = false
 max_length = 220.0
 min_length = 80.0
 title_scroll = "none"
@@ -678,6 +694,9 @@ type = "sysmon"
 [widget.network_tx]
 stat = "net_tx"
 type = "sysmon"
+
+[widget.notifications]
+enabled = false
 
 [widget.output_volume]
 device = "output"
@@ -694,3 +713,12 @@ type = "spacer"
 [widget.temp]
 stat = "cpu_temp"
 type = "sysmon"
+
+[widget.tray]
+enabled = false
+
+[widget.volume]
+enabled = false
+
+[widget.wallpaper]
+enabled = false
