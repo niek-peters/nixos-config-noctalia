@@ -69,7 +69,7 @@ in
       };
       wallpaper = {
         enabled = true;
-        default.path = "~/Pictures/Wallpapers/wallhaven-pkw6y3.jpg";
+        default.path = "~/Pictures/Wallpapers/wallhaven-ymz61d.jpg";
       };
     };
   };
