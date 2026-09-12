@@ -5,6 +5,11 @@
   # device-specific config here
   networking.hostName = "nixos-acer-laptop";
 
+  hardware.amdgpu = {
+    initrd.enable = true;
+    legacySupport.enable = true;
+  };
+
   # Use the Limine EFI boot loader.
   boot.loader.limine = {
     enable = true;
