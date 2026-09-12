@@ -6,9 +6,9 @@
   programs.kitty.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
-    settings = {
-      exec-once = "noctalia";
-    };
+    extraConfig = ''
+      hl.exec_comman("noctalia")
+    '';
   };
 
   # Hint Electron apps to use Wayland
