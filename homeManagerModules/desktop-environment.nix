@@ -25,7 +25,7 @@ let
     monitor = "eDP-1";
     persistent = true;
   };
-  mkFocusWorkspace = i: mkExec "focus({ workspace = ${i} })";
+  mkFocusWorkspace = i: mkBindExec "SUPER + ${i}" "focus({ workspace = ${i} })";
 in
 {
   imports = [
@@ -92,11 +92,11 @@ in
         (mkBindIPC "ALT + Tab" "window-switcher")
 
         # Workspace switching
-        (mkFocusWorkspace "SUPER + 1" 1)
-        (mkFocusWorkspace "SUPER + 2" 2)
-        (mkFocusWorkspace "SUPER + 3" 3)
-        (mkFocusWorkspace "SUPER + 4" 4)
-        (mkFocusWorkspace "SUPER + 5" 5)
+        (mkFocusWorkspace 1)
+        (mkFocusWorkspace 2)
+        (mkFocusWorkspace 3)
+        (mkFocusWorkspace 4)
+        (mkFocusWorkspace 5)
         #(mkBind "SUPER + T" "kitty")
         #(mkBind "SUPER + Space" "noctalia-launcher")
       ];
