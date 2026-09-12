@@ -4,7 +4,12 @@
   ];  
 
   programs.kitty.enable = true;
-  wayland.windowManager.hyprland.enable = true;
+  wayland.windowManager.hyprland = {
+    enable = true;
+    settings = {
+      exec-once = "noctalia";
+    };
+  };
 
   # Hint Electron apps to use Wayland
   home.sessionVariables.NIXOS_OZONE_WL = "1";
