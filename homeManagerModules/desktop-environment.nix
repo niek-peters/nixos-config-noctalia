@@ -1,16 +1,18 @@
 { inputs, lib, ... }:
 let
-  mkBind = key: cmd: { 
+  mkBind = key: cmd: {
     _args = [
       key
       (lib.generators.mkLuaInline "hl.dsp.${cmd}")
     ];
   };
-  mkExec = cmd: lib.generators.mkLuaInline ''
-    function()
-      hl.exec_cmd("${cmd}")
-    end
-  '';
+  mkExec =
+    cmd:
+    lib.generators.mkLuaInline ''
+      function()
+        hl.exec_cmd("${cmd}")
+      end
+    '';
   #mkFunction = body: lib.generators.mkLuaInline ''
   #  function()
   #    ${body}
@@ -20,7 +22,7 @@ in
 {
   imports = [
     inputs.noctalia.homeModules.default
-  ];  
+  ];
 
   programs.kitty.enable = true;
   wayland.windowManager.hyprland = {
@@ -30,6 +32,32 @@ in
       #mod = {
       #  _var = "SUPER";
       #};
+      config = {
+        general = {
+          gaps_in = 5;
+          gaps_out = 10;
+        };
+
+        decoration = {
+          rounding = 20;
+          rounding_power = 2;
+
+          shadow = {
+            enabled = true;
+            range = 4;
+            render_power = 3;
+            color = "0xee1a1a1a";
+          };
+
+          blur = {
+            enabled = true;
+            size = 2;
+            passes = 2;
+            vibrancy = 0.1696;
+          };
+        };
+      };
+
       on = {
         _args = [
           "hyprland.start"
@@ -42,7 +70,7 @@ in
         ];
       };
       bind = [
-        (mkBind "SUPER + Q" ''window.close()'')
+        (mkBind "SUPER + Q" "window.close()")
         (mkBind "SUPER + T" ''exec_cmd("kitty")'')
         (mkBind "SUPER + W" ''exec_cmd("helium")'')
         (mkBind "SUPER + E" ''exec_cmd("thunar")'')
