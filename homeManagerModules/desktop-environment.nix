@@ -1,6 +1,11 @@
 { inputs, lib, ... }:
 let
-  mkBind = key: cmd: lib.generators.mkLuaInline ''hl.bind("${key}", hl.dsp.exec_cmd("${cmd}"))'';
+  mkBind = key: cmd: { 
+    _args = [
+      key
+      (lib.generators.mkLuaInline "hl.dsp.${cmd}")
+    ];
+  }
   mkExec = cmd: lib.generators.mkLuaInline ''
     function()
       hl.exec_cmd("${cmd}")
@@ -22,6 +27,9 @@ in
     enable = true;
 
     settings = {
+      #mod = {
+      #  _var = "SUPER";
+      #};
       on = {
         _args = [
           "hyprland.start"
@@ -34,8 +42,10 @@ in
         ];
       };
       bind = [
-        (mkBind "SUPER + T" "kitty")
-        (mkBind "SUPER + Space" "noctalia-launcher")
+        (mkBind "SUPER + T" ''exec_cmd("kitty")'')
+        (mkBind "SUPER + Space" ''exec_cmd("noctalia-launcher")'')
+        #(mkBind "SUPER + T" "kitty")
+        #(mkBind "SUPER + Space" "noctalia-launcher")
       ];
     };
     #extraConfig = ''
