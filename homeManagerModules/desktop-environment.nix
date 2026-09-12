@@ -69,10 +69,14 @@ in
           touchpad.natural_scroll = false;
           natural_scroll = false;
         };
+
+        misc.force_default_wallpaper = 0;
       };
 
       monitor = {
         output = "eDP-1";
+        mode = "preferred";
+        position = "auto";
         scale = 1;
       };
 
