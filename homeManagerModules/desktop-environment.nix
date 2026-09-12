@@ -32,7 +32,7 @@ in
     inputs.noctalia.homeModules.default
   ];
 
-  programs.kitty.enable = true;
+  #programs.kitty.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
 
@@ -80,7 +80,7 @@ in
 
       bind = [
         (mkBind "SUPER + Q" "window.close()")
-        (mkBindExec "SUPER + T" "kitty")
+        (mkBindExec "SUPER + T" "foot")
         (mkBindExec "SUPER + W" "helium")
         (mkBindExec "SUPER + E" "thunar")
         (mkBindExec "SUPER + C" "code")
@@ -139,19 +139,20 @@ in
 
   programs.noctalia = {
     enable = true;
-    settings = {
-      theme = {
-        mode = "dark";
-        source = "wallpaper";
-      };
-      wallpaper = {
-        enabled = true;
-        default.path = "~/Pictures/Wallpapers/wallhaven-ymz61d.jpg";
-      };
-      brightness.monitor.eDP-1 = {
-        backend = "backlight";
-        backlight_device = "amdgpu_bl1";
-      };
-    };
+    #settings = {
+    #  theme = {
+    #    mode = "dark";
+    #    source = "wallpaper";
+    #  };
+    #  wallpaper = {
+    #    enabled = true;
+    #    default.path = "~/Pictures/Wallpapers/wallhaven-ymz61d.jpg";
+    #  };
+    #  brightness.monitor.eDP-1 = {
+    #    backend = "backlight";
+    #    backlight_device = "amdgpu_bl1";
+    #  };
+    #};
   };
+  xdg.configFile."noctalia/config.toml".source = ./noctalia.toml;
 }

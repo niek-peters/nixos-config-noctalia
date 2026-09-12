@@ -18,5 +18,7 @@
 
   environment.systemPackages = with pkgs; [
     thunar
+    foot
+    starship
   ];
 }
