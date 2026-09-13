@@ -17,7 +17,7 @@
       };
       default_session = {
         # This fallback keeps your regular login greeter if you ever log out
-        command = "${pkgs.noctalia-greeter}/bin/noctalia-greeter --cmd 'uwsm start hyprland-uwsm.desktop'";
+        command = "${pkgs.noctalia-greeter}/bin/noctalia-greeter-session --cmd 'uwsm start hyprland-uwsm.desktop'";
         user = "greeter";
       };
     };
@@ -25,6 +25,7 @@
 
   # programs.noctalia-greeter = {
   #   enable = true;
+
   # };
 
   #services.displayManager.noctalia-greeter = {
@@ -33,6 +34,7 @@
 
   environment.systemPackages = with pkgs; [
     thunar
+    noctalia-greeter
     #foot
     #starship
   ];
