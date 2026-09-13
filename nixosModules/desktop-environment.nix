@@ -17,7 +17,7 @@
       };
       default_session = {
         # This fallback keeps your regular login greeter if you ever log out
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'uwsm start hyprland-uwsm.desktop'";
+        command = "${pkgs.noctalia-greeter}/bin/noctalia-greeter --cmd 'uwsm start hyprland-uwsm.desktop'";
         user = "greeter";
       };
     };
