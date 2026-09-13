@@ -66,8 +66,8 @@ in
         };
 
         input = {
-          touchpad.natural_scroll = false;
-          natural_scroll = false;
+          touchpad.natural_scroll = true;
+          natural_scroll = true;
         };
 
         misc.force_default_wallpaper = 0;
