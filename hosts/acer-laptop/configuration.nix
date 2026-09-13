@@ -1,14 +1,10 @@
 { pkgs, ... }: {
   # enable/disable nixosModules here once we make them togglable
 
-
   # device-specific config here
   networking.hostName = "nixos-acer-laptop";
 
-  hardware.amdgpu = {
-    #initrd.enable = true;
-    legacySupport.enable = true;
-  };
+  hardware.amdgpu.legacySupport.enable = true;
 
   # Use the Limine EFI boot loader.
   boot.loader.limine = {
@@ -30,5 +26,5 @@
   };
 
   boot.loader.efi.canTouchEfiVariables = true;
-  
+
 }
