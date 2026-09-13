@@ -11,7 +11,7 @@
   boot.initrd.systemd.tpm2.enable = false;
 
   networking.networkmanager.enable = true;
-  
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -40,18 +40,24 @@
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
-    variant = "intl";
+    variant = "altgr-intl";
   };
 
   # Configure console keymap
-  console.keyMap = "us-acentos";
+  # console.keyMap = "us-acentos";
+  console.useXkbConfig = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."niek" = {
     isNormalUser = true;
     description = "Niek Peters";
-    extraGroups = [ "networkmanager" "wheel" "video" "render" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "render"
+    ];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
@@ -69,7 +75,10 @@
 
   system.stateVersion = "26.05"; # Did you read the comment?
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   environment.systemPackages = with pkgs; [
     wget
