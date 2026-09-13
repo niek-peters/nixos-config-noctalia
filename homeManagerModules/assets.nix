@@ -7,7 +7,7 @@
 
     # Standard Linux user icon / avatar path used by many desktop apps and login screens
     ".face" = {
-      source = ../assets/avatars/profile.png;
+      source = ../assets/avatars/me.jpg;
     };
   };
 }
