@@ -34,10 +34,10 @@
   #   passwordless-sync-users = [ "niek" ];
   # };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
     thunar
     #noctalia-greeter
     #foot
     #starship
-  ];
+  ]) ++ [inputs.noctalia-greeter];
 }
