@@ -37,6 +37,7 @@
     LC_TIME = "nl_NL.UTF-8";
   };
 
+  # TODO: Figure out how to get US Intl, dead keys, euro on 5 to work
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";

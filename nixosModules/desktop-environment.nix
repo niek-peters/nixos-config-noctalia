@@ -25,6 +25,7 @@
   #   };
   # };
 
+  # TODO: figure out why avatar not showing on greeter
   services.accounts-daemon.enable = true;
   programs.noctalia-greeter = {
     enable = true;
