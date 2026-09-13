@@ -25,6 +25,7 @@
   #   };
   # };
 
+  services.accounts-daemon.enable = true;
   programs.noctalia-greeter = {
     enable = true;
     passwordless-sync-users = [ "niek" ];
