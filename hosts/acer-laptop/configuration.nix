@@ -6,7 +6,7 @@
   networking.hostName = "nixos-acer-laptop";
 
   hardware.amdgpu = {
-    initrd.enable = true;
+    #initrd.enable = true;
     legacySupport.enable = true;
   };
 
