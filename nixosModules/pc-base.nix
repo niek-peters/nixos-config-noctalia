@@ -40,7 +40,8 @@
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
-    variant = "altgr-intl";
+    variant = "intl";
+    options = "eurosign:5";
   };
 
   # Configure console keymap
