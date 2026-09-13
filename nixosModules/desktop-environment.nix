@@ -24,15 +24,15 @@
   #   };
   # };
 
-  # programs.noctalia-greeter = {
-  #   enable = true;
-
-  # };
-
-  services.displayManager.noctalia-greeter = {
+  programs.noctalia-greeter = {
     enable = true;
     passwordless-sync-users = [ "niek" ];
   };
+
+  # services.displayManager.noctalia-greeter = {
+  #   enable = true;
+  #   passwordless-sync-users = [ "niek" ];
+  # };
 
   environment.systemPackages = with pkgs; [
     thunar
