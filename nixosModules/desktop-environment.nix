@@ -8,9 +8,24 @@
     withUWSM = true;
   };
 
-  programs.noctalia-greeter = {
+  services.greetd = {
     enable = true;
+    settings = {
+      initial_session = {
+        command = "uwsm start hyprland-uwsm.desktop";
+        user = "niek";
+      };
+      default_session = {
+        # This fallback keeps your regular login greeter if you ever log out
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'uwsm start hyprland-uwsm.desktop'";
+        user = "greeter";
+      };
+    };
   };
+
+  # programs.noctalia-greeter = {
+  #   enable = true;
+  # };
 
   #services.displayManager.noctalia-greeter = {
   #  enable = true;
