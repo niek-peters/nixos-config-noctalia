@@ -41,6 +41,7 @@
   users.users."niek" = {
     isNormalUser = true;
     description = "Niek Peters";
+    homeMode = "755";
     extraGroups = [
       "networkmanager"
       "wheel"

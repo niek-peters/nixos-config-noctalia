@@ -41,8 +41,8 @@
     mkdir -p /var/lib/AccountsService/users
     mkdir -p /var/lib/AccountsService/icons
 
-    # (Optional) If you copy your avatar file here during activation, or ensure it's in place:
-    # cp /home/niek/.face /var/lib/AccountsService/icons/niek
+    # Create symlink (dangling symlinks are allowed, so this won't fail if .face isn't there yet)
+    ln -sf /home/niek/.face /var/lib/AccountsService/icons/niek
 
     # Write the AccountsService user configuration file
     cat <<EOF > /var/lib/AccountsService/users/niek
