@@ -2,6 +2,7 @@
   inputs,
   lib,
   pkgs,
+  config,
   ...
 }:
 let
@@ -289,6 +290,11 @@ in
       Appearance = {
         icon_theme = "Papirus-Dark";
         style = "Fusion";
+        color_scheme_path = "${config.home.homeDirectory}/.config/qt6ct/colors/noctalia.conf";
+        custom_palette = true;
+      };
+      Interface = {
+        cursor_theme = "Bibata-Modern-Ice";
       };
     };
   };
