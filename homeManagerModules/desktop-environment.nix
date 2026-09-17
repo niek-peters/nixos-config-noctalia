@@ -194,6 +194,21 @@ in
         blur = true;
         blur_popups = true;
       };
+
+      env = [
+        {
+          _args = [
+            "QT_QPA_PLATFORMTHEME"
+            "qt5ct"
+          ];
+        }1
+        {
+          _args = [
+            "QT_QPA_PLATFORMTHEME"
+            "qt6ct"
+          ];
+        }
+      ];
     };
     extraConfig = ''
       local noctaliaPath = os.getenv("HOME") .. "/.config/hypr/noctalia.lua"
