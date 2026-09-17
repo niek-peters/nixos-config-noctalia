@@ -7,6 +7,7 @@
     enable = true;
     withUWSM = true;
   };
+  services.hypridle.enable = true;
 
   # Optional auto-login instead of Noctalia greeter
   # services.greetd = {
