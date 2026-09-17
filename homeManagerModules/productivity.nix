@@ -17,19 +17,27 @@
 
   # Helium copy Widevine DRM from Google Chrome
   home.activation.heliumWidevineFix = lib.mkAfter ''
-    HELIUM_DIR="$HOME/.config/net.imput.helium/WidevineCdm"
+    HELIUM_DIR="$HOME/.config/net.imput.helium"
+    WIDEVINE_DEST="$HELIUM_DIR/WidevineCdm"
     CHROME_WIDEVINE_DIR="${pkgs.google-chrome}/opt/google/chrome/WidevineCdm"
 
     if [ -d "$CHROME_WIDEVINE_DIR" ]; then
-      mkdir -p "$HELIUM_DIR"
-      # Chrome hides the actual module inside an architecture-specific folder
+      mkdir -p "$WIDEVINE_DEST"
+      
       if [ -d "$CHROME_WIDEVINE_DIR/_platform_specific/linux_x64" ]; then
-        cp -rf "$CHROME_WIDEVINE_DIR/_platform_specific/linux_x64/"* "$HELIUM_DIR/"
+        cp -rf "$CHROME_WIDEVINE_DIR/_platform_specific/linux_x64/"* "$WIDEVINE_DEST/"
       else
-        cp -rf "$CHROME_WIDEVINE_DIR/"* "$HELIUM_DIR/"
+        cp -rf "$CHROME_WIDEVINE_DIR/"* "$WIDEVINE_DEST/"
       fi
-      # Ensure the library file is executable
-      chmod -R +rx "$HELIUM_DIR"
+      
+      # Extract version from manifest.json to satisfy Chromium's component state tracker
+      if [ -f "$WIDEVINE_DEST/manifest.json" ]; then
+        VERSION=$(grep -o '"version": *"[^"]*"' "$WIDEVINE_DEST/manifest.json" | head -n 1 | cut -d'"' -f4)
+        # Write the component tracking file Helium expects
+        echo "$VERSION" > "$HELIUM_DIR/latest-component-updated-widevine-cdm"
+      fi
+
+      chmod -R +rx "$WIDEVINE_DEST"
     fi
   '';
 
