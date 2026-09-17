@@ -122,12 +122,19 @@ in
         (mkBindExec "SUPER + W" "helium")
         (mkBindExec "SUPER + E" "thunar")
         (mkBindExec "SUPER + C" "code")
+        (mkBindExec "SUPER + O" "obsidian")
 
         # Recommended Noctalia base keybinds
         (mkBindIPC "SUPER + Space" "panel-toggle launcher")
         (mkBindIPC "SUPER + S" "panel-toggle control-center")
         (mkBindIPC "SUPER + comma" "settings-toggle")
         (mkBindIPC "ALT + Tab" "window-switcher")
+
+        # Noctalia brightness/volume keybinds
+        (mkBindIPC "SUPER + UP" "volume-up")
+        (mkBindIPC "SUPER + DOWN" "volume-down")
+        (mkBindIPC "SUPER + LEFT" "brightness-up")
+        (mkBindIPC "SUPER + RIGHT" "brightness-down")
 
         # Workspace switching
         (mkFocusWorkspace 1)
