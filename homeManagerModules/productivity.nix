@@ -27,7 +27,7 @@
         cp -rf "$CHROME_WIDEVINE_DIR/_platform_specific/linux_x64/"* "$HELIUM_DIR/"
       else
         cp -rf "$CHROME_WIDEVINE_DIR/"* "$HELIUM_DIR/"
-      }
+      fi
       # Ensure the library file is executable
       chmod -R +rx "$HELIUM_DIR"
     fi
