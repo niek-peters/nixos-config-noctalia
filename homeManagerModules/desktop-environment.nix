@@ -288,6 +288,7 @@ in
     qt6ctSettings = {
       Appearance = {
         icon_theme = "Papirus-Dark";
+        style = "Fusion";
       };
     };
   };
