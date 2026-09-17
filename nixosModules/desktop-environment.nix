@@ -27,9 +27,21 @@
 
   # TODO: figure out why avatar not showing on greeter
   services.accounts-daemon.enable = true;
+  # Create/overwrite the AccountsService user settings file
+  system.activationScripts.accountsServiceAvatar = ''
+    mkdir -p /var/lib/AccountsService/users
+    cat <<EOF > /var/lib/AccountsService/users/niek
+    [User]
+    Icon=/home/niek/.face
+    X-AccountType=Regular
+    EOF
+  '';
+
   programs.noctalia-greeter = {
     enable = true;
     passwordless-sync-users = [ "niek" ];
+
+    cursorTheme.package = pkgs.bibata-cursors;
     settings = {
       cursor = {
         theme = "Bibata-Modern-Ice";
@@ -38,9 +50,9 @@
       };
       keyboard = {
         layout = "us";
+        variant = "intl";
       };
-    }
-    ;
+    };
   };
 
   # services.displayManager.noctalia-greeter = {

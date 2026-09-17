@@ -37,18 +37,6 @@
     LC_TIME = "nl_NL.UTF-8";
   };
 
-  # # TODO: Figure out how to get US Intl, dead keys, euro on 5 to work
-  # # Configure keymap in X11
-  # services.xserver.xkb = {
-  #   layout = "us";
-  #   variant = "intl";
-  #   options = "eurosign:5";
-  # };
-
-  # # Configure console keymap
-  # # console.keyMap = "us-acentos";
-  # console.useXkbConfig = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."niek" = {
     isNormalUser = true;
