@@ -308,10 +308,10 @@ in
     qt6ctSettings = qtSettings;
     qt5ctSettings = qtSettings;
   };
-
-  xdg.configFile."Thunar/thunarrc".text = ''
-    [Configuration]
-    LastView=ThunarDetailsView
-    LastSidePane=ThunarTreeModel
-  '';
+  # Doesn't work
+  # xdg.configFile."Thunar/thunarrc".text = ''
+  #   [Configuration]
+  #   LastView=ThunarDetailsView
+  #   LastSidePane=ThunarTreeModel
+  # '';
 }
