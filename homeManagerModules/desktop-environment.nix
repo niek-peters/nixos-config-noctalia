@@ -48,9 +48,9 @@ in
   ];
 
   home.packages = with pkgs; [
-    adw-gtk3
-    papirus-icon-theme
-    papirus-folders
+    # adw-gtk3
+    # papirus-icon-theme
+    # papirus-folders
   ];
 
   #programs.kitty.enable = true;
@@ -270,20 +270,21 @@ in
   # GTK Configuration
   gtk = {
     enable = true;
-    theme = {
-      name = "adw-gtk3-dark";
-      package = pkgs.adw-gtk3;
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
+    # theme = {
+    #   name = "adw-gtk3-dark";
+    #   package = pkgs.adw-gtk3;
+    # };
+    # iconTheme = {
+    #   name = "Papirus-Dark";
+    #   package = pkgs.papirus-icon-theme;
+    # };
   };
 
   # Qt / Kvantum Configuration for cross-toolkit consistency
   qt = {
     enable = true;
-    style.name = "adwaita-dark"; # Or kvantum depending on preference
-    platformTheme.name = "gtk"; # Forces Qt apps to follow GTK/GNOME settings
+    # style.name = "fusion"; # Or kvantum depending on preference
+    # platformTheme.name = "gtk"; # Forces Qt apps to follow GTK/GNOME settings
+
   };
 }
