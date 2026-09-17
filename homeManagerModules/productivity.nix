@@ -17,4 +17,12 @@
       commandLineArgs = "--password-store=gnome-libsecret";
     };
   };
+
+  programs.obsidian = {
+    enable = true;
+    defaultSettings.communityPlugins.obsidian-git = {
+      enable = true;
+      settings.autoPullOnBoot = true;
+    };
+  };
 }
