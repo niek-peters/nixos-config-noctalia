@@ -153,6 +153,9 @@ in
         (mkMouseBind "SUPER + mouse:272" "window.drag()")
         (mkMouseBind "SUPER + mouse:273" "window.resize()")
 
+        # Toggle current split orientation between vertical and horizontal
+        (mkBind "SUPER + J" "layout(\"togglesplit\")")
+
         #(mkBind "SUPER + T" "kitty")
         #(mkBind "SUPER + Space" "noctalia-launcher")
       ];
