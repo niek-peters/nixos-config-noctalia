@@ -81,6 +81,7 @@
 
   environment.systemPackages = with pkgs; [
     thunar
+    firefox
     #noctalia-greeter
     #foot
     #starship
