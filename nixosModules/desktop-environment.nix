@@ -41,7 +41,6 @@
     enable = true;
     passwordless-sync-users = [ "niek" ];
 
-    cursorTheme.package = pkgs.bibata-cursors;
     settings = {
       cursor = {
         theme = "Bibata-Modern-Ice";
