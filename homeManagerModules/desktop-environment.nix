@@ -53,8 +53,6 @@ in
     papirus-folders
   ];
 
-  services.hypridle.enable = true;
-
   #programs.kitty.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
