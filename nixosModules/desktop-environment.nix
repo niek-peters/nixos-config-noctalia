@@ -42,6 +42,7 @@
     passwordless-sync-users = [ "niek" ];
 
     settings = {
+      appearance.hide_logo = true;
       cursor = {
         theme = "Bibata-Modern-Ice";
         size = 24;
