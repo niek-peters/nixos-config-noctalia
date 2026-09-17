@@ -77,8 +77,8 @@ warning_threshold = 10
 [brightness]
 enable_ddcutil = false
 ignore_mmids = []
-minimum_brightness = 0.0
-sync_all_monitors = false
+minimum_brightness = 0.0099999997764825821
+sync_all_monitors = true
 
     [brightness.monitor.eDP-1]
     backend = "backlight"
@@ -337,9 +337,9 @@ enabled = true
 monitors = []
 offset_x = 20
 offset_y = 8
-orientation = "horizontal"
+orientation = "vertical"
 position = "top_center"
-position_vertical = "top_center"
+position_vertical = "center_right"
 scale = 1.0
 
     [osd.kinds]
