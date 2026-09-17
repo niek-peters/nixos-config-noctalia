@@ -23,10 +23,19 @@
       url = "github:oxcl/nix-flake-helium-browser";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    obsidian-extensions = {
+      url = "github:karaolidis/nix-obsidian-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+    {
+      nixpkgs,
+      home-manager,
+      obsidian-extensions,
+      ...
+    }@inputs:
     {
       nixosConfigurations.nixos-acer-laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -50,6 +59,12 @@
               };
               backupFileExtension = "backup";
             };
+          }
+
+          {
+            nixpkgs.overlays = [
+              obsidian-extensions.overlays.default
+            ];
           }
         ];
       };

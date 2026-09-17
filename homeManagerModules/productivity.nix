@@ -20,9 +20,15 @@
 
   programs.obsidian = {
     enable = true;
-    defaultSettings.communityPlugins.obsidian-git = {
-      enable = true;
-      settings.autoPullOnBoot = true;
-    };
+    defaultSettings.communityPlugins = [
+      {
+        pkg = pkgs.obsidianPlugins.obsidian-git;
+        settings.autoPullOnBoot = true;
+      }
+    ];
+    # defaultSettings.communityPlugins.obsidian-git = {
+    #   enable = true;
+    #   settings.autoPullOnBoot = true;
+    # };
   };
 }
