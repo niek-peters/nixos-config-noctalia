@@ -73,6 +73,9 @@ in
         input = {
           touchpad.natural_scroll = true;
           natural_scroll = true;
+
+          kb_layout = "us";
+          kb_variant = "intl";
         };
 
         misc.force_default_wallpaper = 0;
