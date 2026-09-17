@@ -20,6 +20,9 @@
 
   programs.obsidian = {
     enable = true;
+
+    vaults."~/Documents/Obsidian/obsidian-main".enable = true;
+
     defaultSettings.communityPlugins = [
       {
         pkg = pkgs.obsidianPlugins.obsidian-git;
