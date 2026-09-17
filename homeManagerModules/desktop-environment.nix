@@ -42,6 +42,21 @@ let
   mkMoveWorkspace =
     i: mkBind "SUPER + SHIFT + ${toString i}" "window.move({ workspace = ${toString i} })";
   mkMoveDir = key: dir: mkBind "SUPER + SHIFT + ${key}" "window.move({ direction = \"${dir}\" })";
+
+  qtSettings = {
+    Appearance = {
+      icon_theme = "Papirus-Dark";
+      style = "Fusion";
+      color_scheme_path = "${config.home.homeDirectory}/.config/qt6ct/colors/noctalia.conf";
+      custom_palette = true;
+    };
+    Fonts = {
+      general = "JetBrains Mono Nerd Font,10,-1,5,50,0,0,0,0,0";
+    };
+    Interface = {
+      cursor_theme = "Bibata-Modern-Ice";
+    };
+  };
 in
 {
   imports = [
@@ -271,14 +286,18 @@ in
   # GTK Configuration
   gtk = {
     enable = true;
-    # theme = {
-    #   name = "adw-gtk3-dark";
-    #   package = pkgs.adw-gtk3;
-    # };
-    # iconTheme = {
-    #   name = "Papirus-Dark";
-    #   package = pkgs.papirus-icon-theme;
-    # };
+    theme = {
+      name = "adw-gtk3-dark";
+      package = pkgs.adw-gtk3;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    font = {
+      name = "JetBrainsMono Nerd Font";
+      size = 10;
+    };
   };
 
   # Qt / Kvantum Configuration for cross-toolkit consistency
@@ -286,16 +305,7 @@ in
     enable = true;
     # style.name = "fusion"; # Or kvantum depending on preference
     # platformTheme.name = "gtk"; # Forces Qt apps to follow GTK/GNOME settings
-    qt6ctSettings = {
-      Appearance = {
-        icon_theme = "Papirus-Dark";
-        style = "Fusion";
-        color_scheme_path = "${config.home.homeDirectory}/.config/qt6ct/colors/noctalia.conf";
-        custom_palette = true;
-      };
-      Interface = {
-        cursor_theme = "Bibata-Modern-Ice";
-      };
-    };
+    qt6ctSettings = qtSettings;
+    qt5ctSettings = qtSettings;
   };
 }
