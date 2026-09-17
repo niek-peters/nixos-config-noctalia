@@ -86,6 +86,8 @@
     adw-gtk3
     qt6Packages.qt6ct
     libsForQt5.qt5ct
+    papirus-icon-theme
+    papirus-folders
     #noctalia-greeter
     #foot
     #starship

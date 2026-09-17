@@ -47,11 +47,11 @@ in
     inputs.noctalia.homeModules.default
   ];
 
-  home.packages = with pkgs; [
-    # adw-gtk3
-    # papirus-icon-theme
-    # papirus-folders
-  ];
+  # home.packages = with pkgs; [
+  #   # adw-gtk3
+  #   papirus-icon-theme
+  #   papirus-folders
+  # ];
 
   #programs.kitty.enable = true;
   wayland.windowManager.hyprland = {
