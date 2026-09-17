@@ -4,6 +4,7 @@
     enable32Bit = true;
   };
   hardware.bluetooth.enable = true;
+  hardware.i2c.enable = true; # allegedly might be needed for external monitor brightness control
 
   services.power-profiles-daemon.enable = true;
 
@@ -85,5 +86,6 @@
     speedtest-cli
     fastfetch
     htop
+    ddcutil # for external monitor brightness
   ];
 }
