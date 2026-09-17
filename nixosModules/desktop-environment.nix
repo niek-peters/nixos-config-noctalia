@@ -28,13 +28,32 @@
   # TODO: figure out why avatar not showing on greeter
   services.accounts-daemon.enable = true;
   # Create/overwrite the AccountsService user settings file
+  # system.activationScripts.accountsServiceAvatar = ''
+  #   mkdir -p /var/lib/AccountsService/users
+  #   cat <<EOF > /var/lib/AccountsService/users/niek
+  #   [User]
+  #   Icon=/home/niek/.face
+  #   X-AccountType=Regular
+  #   EOF
+  # '';
   system.activationScripts.accountsServiceAvatar = ''
+    # Ensure necessary directories exist
     mkdir -p /var/lib/AccountsService/users
+    mkdir -p /var/lib/AccountsService/icons
+
+    # (Optional) If you copy your avatar file here during activation, or ensure it's in place:
+    # cp /home/niek/.face /var/lib/AccountsService/icons/niek
+
+    # Write the AccountsService user configuration file
     cat <<EOF > /var/lib/AccountsService/users/niek
     [User]
-    Icon=/home/niek/.face
+    Icon=/var/lib/AccountsService/icons/niek
     X-AccountType=Regular
     EOF
+
+    # Enforce correct permissions recursively
+    find /var/lib/AccountsService -type d -exec chmod 755 {} +
+    find /var/lib/AccountsService -type f -exec chmod 644 {} +
   '';
 
   programs.noctalia-greeter = {
