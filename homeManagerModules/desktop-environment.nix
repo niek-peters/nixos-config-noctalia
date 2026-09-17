@@ -201,7 +201,7 @@ in
             "QT_QPA_PLATFORMTHEME"
             "qt5ct"
           ];
-        }1
+        }
         {
           _args = [
             "QT_QPA_PLATFORMTHEME"
