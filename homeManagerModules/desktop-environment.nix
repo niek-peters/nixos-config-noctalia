@@ -285,6 +285,10 @@ in
     enable = true;
     # style.name = "fusion"; # Or kvantum depending on preference
     # platformTheme.name = "gtk"; # Forces Qt apps to follow GTK/GNOME settings
-
+    qt6ctSettings = {
+      Appearance = {
+        icon_theme = "Papirus-Dark";
+      };
+    };
   };
 }
