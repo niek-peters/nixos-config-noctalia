@@ -11,6 +11,13 @@ let
       (lib.generators.mkLuaInline "hl.dsp.${cmd}")
     ];
   };
+  mkMouseBind = key: cmd: {
+    _args = [
+      key
+      (lib.generators.mkLuaInline "hl.dsp.${cmd}")
+      { mouse = true; }
+    ];
+  };
   mkBindExec = key: cmd: (mkBind key ''exec_cmd("${cmd}")'');
   mkBindIPC = key: cmd: (mkBindExec key "noctalia msg ${cmd}");
   mkExec =
@@ -31,6 +38,9 @@ let
     persistent = true;
   };
   mkFocusWorkspace = i: mkBind "SUPER + ${toString i}" "focus({ workspace = ${toString i} })";
+  mkMoveWorkspace =
+    i: mkBind "SUPER + SHIFT + ${toString i}" "window.move({ workspace = ${toString i} })";
+  mkMoveDir = key: dir: mkBind "SUPER + SHIFT + ${key}" "window.move({ direction = \"${dir}\" })";
 in
 {
   imports = [
@@ -125,6 +135,24 @@ in
         (mkFocusWorkspace 3)
         (mkFocusWorkspace 4)
         (mkFocusWorkspace 5)
+
+        # Move active window to workspace
+        (mkMoveWorkspace 1)
+        (mkMoveWorkspace 2)
+        (mkMoveWorkspace 3)
+        (mkMoveWorkspace 4)
+        (mkMoveWorkspace 5)
+
+        # Rearrange windows within workspace
+        (mkMoveDir "LEFT" "left")
+        (mkMoveDir "RIGHT" "right")
+        (mkMoveDir "UP" "up")
+        (mkMoveDir "DOWN" "down")
+
+        # Mouse window binds (Move & Resize)
+        (mkMouseBind "SUPER + mouse:272" "window.drag()")
+        (mkMouseBind "SUPER + mouse:273" "window.resize()")
+
         #(mkBind "SUPER + T" "kitty")
         #(mkBind "SUPER + Space" "noctalia-launcher")
       ];
