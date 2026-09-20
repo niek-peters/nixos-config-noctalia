@@ -83,7 +83,14 @@
     thunar
     firefox
 
+    # Screenshots
+    grim
+    slurp
+    wl-clipboard
+
     # adw-gtk3
+
+    # Styling
     qt6Packages.qt6ct
     libsForQt5.qt5ct
     papirus-icon-theme

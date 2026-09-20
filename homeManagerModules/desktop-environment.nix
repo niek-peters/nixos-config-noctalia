@@ -146,6 +146,7 @@ in
         (mkBindExec "SUPER + E" "thunar")
         (mkBindExec "SUPER + C" "code")
         (mkBindExec "SUPER + O" "obsidian")
+        (mkBindExec "SUPER + S" ''grim -g "$(slurp -d)" - | wl-copy'')
 
         # Recommended Noctalia base keybinds
         (mkBindIPC "SUPER + Space" "panel-toggle launcher")
