@@ -340,4 +340,6 @@ in
   #   LastView=ThunarDetailsView
   #   LastSidePane=ThunarTreeModel
   # '';
+
+  xfconf.settings.thunar."default-view" = "ThunarDetailsView";
 }
