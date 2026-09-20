@@ -7,6 +7,7 @@
 {
   imports = [
     inputs.helium-flake.homeModules.default
+    inputs.spicetify-nix.homeManagerModules.default
   ];
 
   programs.helium.enable = true;
@@ -33,5 +34,17 @@
     #   enable = true;
     #   settings.autoPullOnBoot = true;
     # };
+  };
+
+  programs.spicetify = {
+    enable = true;
+    colorScheme = "noctalia";
+    theme = {
+      name = "Colorful";
+      src = ".config/spicetify";
+      homeConfig = true;
+      sidebarConfig = true;
+      injectCss = true;
+    };
   };
 }

@@ -215,8 +215,8 @@ in
           match.class = "dev.noctalia.Noctalia";
           float = true;
           size = [
+            600
             800
-            1000
           ];
         }
         # {
