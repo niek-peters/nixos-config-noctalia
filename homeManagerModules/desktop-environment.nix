@@ -152,6 +152,7 @@ in
         (mkBindExec "SUPER + C" "code")
         (mkBindExec "SUPER + O" "obsidian")
         (mkBindExec "SUPER + P" "drawing")
+        (mkBindExec "SUPER + D" "discord")
         (mkBindExec "SUPER + S" ''grim -g \"$(slurp -d)\" - | wl-copy'')
         (mkBindExec "SUPER + SHIFT + S" ''grim -g \"$(slurp -d)\" - | satty -f - --copy-command wl-copy -o \"~/Pictures/Screenshots/%Y%m%d_%H%M%S.png\"'')
 
