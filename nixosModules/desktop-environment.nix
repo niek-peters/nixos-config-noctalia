@@ -95,7 +95,7 @@
     firefox
     drawing
     loupe # image viewer
-    vlc
+    mpv # video player
     # spotify
 
     # Screenshots
