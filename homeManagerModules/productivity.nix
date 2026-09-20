@@ -41,10 +41,10 @@
     colorScheme = "noctalia";
     theme = {
       name = "Colorful";
-      src = ../config/spicetify;
-      homeConfig = true;
-      sidebarConfig = true;
-      injectCss = true;
+      src = ../config/spicetify/Themes;
+      # homeConfig = true;
+      # sidebarConfig = true;
+      # injectCss = true;
     };
   };
 }
