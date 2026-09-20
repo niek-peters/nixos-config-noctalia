@@ -143,7 +143,7 @@ in
         # General
         (mkBind "SUPER + Q" "window.close()")
         (mkBind "SUPER + F" "window.fullscreen()")
-        (mkBind "SUPER + M" ''workspace.toggle_special(\"music\")'')
+        (mkBind "SUPER + M" ''workspace.toggle_special("music")'')
 
         # Applications/Tools
         (mkBindExec "SUPER + T" "foot")
@@ -151,6 +151,7 @@ in
         (mkBindExec "SUPER + E" "thunar")
         (mkBindExec "SUPER + C" "code")
         (mkBindExec "SUPER + O" "obsidian")
+        (mkBindExec "SUPER + P" "drawing")
         (mkBindExec "SUPER + S" ''grim -g \"$(slurp -d)\" - | wl-copy'')
         (mkBindExec "SUPER + SHIFT + S" ''grim -g \"$(slurp -d)\" - | satty -f - --copy-command wl-copy -o \"~/Pictures/Screenshots/%Y%m%d_%H%M%S.png\"'')
 
