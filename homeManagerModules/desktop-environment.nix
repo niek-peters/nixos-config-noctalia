@@ -147,7 +147,7 @@ in
         (mkBindExec "SUPER + C" "code")
         (mkBindExec "SUPER + O" "obsidian")
         (mkBindExec "SUPER + S" ''grim -g \"$(slurp -d)\" - | wl-copy'')
-        (mkBindExec "SUPER + Shift_L + S" ''grim -g \"$(slurp -d)\" - | satty -f - --copy-command wl-copy -o \"~/Pictures/Screenshots/%Y%m%d_%H%M%S.png\"'')
+        (mkBindExec "SUPER + SHIFT + S" ''grim -g \"$(slurp -d)\" - | satty -f - --copy-command wl-copy -o \"~/Pictures/Screenshots/%Y%m%d_%H%M%S.png\"'')
 
         # Recommended Noctalia base keybinds
         (mkBindIPC "SUPER + Space" "panel-toggle launcher")
