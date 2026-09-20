@@ -72,6 +72,7 @@ in
   #programs.kitty.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "lua";
 
     settings = {
       #mod = {
@@ -111,6 +112,12 @@ in
         };
 
         misc.force_default_wallpaper = 0;
+      };
+
+      gesture = {
+        fingers = 3;
+        direction = "horizontal";
+        action = "workspace";
       };
 
       monitor = {
