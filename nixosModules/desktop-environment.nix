@@ -87,6 +87,7 @@
     grim
     slurp
     wl-clipboard
+    satty
 
     # adw-gtk3
 
