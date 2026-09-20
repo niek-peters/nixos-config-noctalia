@@ -74,13 +74,24 @@
     };
   };
 
+  # File manager stuff
+  programs.thunar.enable = true;
+  programs.xconf.enable = true;
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-archive-plugin
+    thunar-volman
+  ];
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
+
   # services.displayManager.noctalia-greeter = {
   #   enable = true;
   #   passwordless-sync-users = [ "niek" ];
   # };
 
   environment.systemPackages = with pkgs; [
-    thunar
+    # thunar
+    kdePackages.ark # archive manager
     firefox
     drawing
     # spotify
