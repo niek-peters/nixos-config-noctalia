@@ -150,7 +150,7 @@ in
 
         # Recommended Noctalia base keybinds
         (mkBindIPC "SUPER + Space" "panel-toggle launcher")
-        (mkBindIPC "SUPER + S" "panel-toggle control-center")
+        (mkBindIPC "SUPER" "panel-toggle control-center")
         (mkBindIPC "SUPER + comma" "settings-toggle")
         (mkBindIPC "ALT + Tab" "window-switcher")
 
