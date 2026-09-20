@@ -83,6 +83,7 @@
     thunar
     firefox
     drawing
+    spotify
 
     # Screenshots
     grim

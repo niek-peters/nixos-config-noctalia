@@ -140,7 +140,12 @@ in
       };
 
       bind = [
+        # General
         (mkBind "SUPER + Q" "window.close()")
+        (mkBind "SUPER + F" "window.fullscreen()")
+        (mkBind "SUPER + M" ''workspace.toggle_special(\"music\")'')
+
+        # Applications/Tools
         (mkBindExec "SUPER + T" "foot")
         (mkBindExec "SUPER + W" "helium")
         (mkBindExec "SUPER + E" "thunar")
@@ -198,16 +203,26 @@ in
         (mkWorkspace 3)
         (mkWorkspace 4)
         (mkWorkspace 5)
+        {
+          workspace = "special:music";
+          on_created_empty = "spotify";
+        }
       ];
 
-      window_rule = {
-        match.class = "dev.noctalia.Noctalia";
-        float = true;
-        size = [
-          1080
-          920
-        ];
-      };
+      window_rule = [
+        {
+          match.class = "dev.noctalia.Noctalia";
+          float = true;
+          size = [
+            800
+            1000
+          ];
+        }
+        # {
+        #   match.class = "spotify";
+        #   workspace = "special:music";
+        # }
+      ];
 
       layer_rule = {
         name = "noctalia";
