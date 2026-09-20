@@ -94,6 +94,8 @@
     kdePackages.ark # archive manager
     firefox
     drawing
+    qview # image viewer
+    vlc
     # spotify
 
     # Screenshots
