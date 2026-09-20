@@ -300,7 +300,7 @@ in
     };
   };
 
-  # Qt / Kvantum Configuration for cross-toolkit consistency
+  # Qt Configuration for cross-toolkit consistency
   qt = {
     enable = true;
     # style.name = "fusion"; # Or kvantum depending on preference

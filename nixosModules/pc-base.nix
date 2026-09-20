@@ -65,14 +65,14 @@
   # For nixd in VSCode
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
-  # Automatic garbage collection
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
-  # Automatically deduplicate store
-  nix.settings.auto-optimise-store = true;
+  # # Automatic garbage collection
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   options = "--delete-older-than 7d";
+  # };
+  # # Automatically deduplicate store
+  # nix.settings.auto-optimise-store = true;
 
   system.stateVersion = "26.05"; # Did you read the comment?
 
