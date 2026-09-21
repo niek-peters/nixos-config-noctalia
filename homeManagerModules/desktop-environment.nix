@@ -111,7 +111,11 @@ in
           kb_variant = "intl";
         };
 
-        misc.force_default_wallpaper = 0;
+        # misc.force_default_wallpaper = 0;
+        misc = {
+          disable_splash_rendering = true;
+          disable_hyprland_logo = true;
+        };
       };
 
       gesture = {
@@ -120,12 +124,12 @@ in
         action = "workspace";
       };
 
-      monitor = {
-        output = "eDP-1";
-        mode = "1920x1080@60.01Hz";
-        position = "0x0";
-        scale = 1.25;
-      };
+      # monitor = {
+      #   output = "eDP-1";
+      #   mode = "1920x1080@60.01Hz";
+      #   position = "0x0";
+      #   scale = 1.25;
+      # };
 
       on = {
         _args = [
