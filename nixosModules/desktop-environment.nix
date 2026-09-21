@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, username, ... }: {
   imports = [
     inputs.noctalia-greeter.nixosModules.default
   ];
@@ -42,12 +42,12 @@
     mkdir -p /var/lib/AccountsService/icons
 
     # Create symlink (dangling symlinks are allowed, so this won't fail if .face isn't there yet)
-    ln -sf /home/niek/.face /var/lib/AccountsService/icons/niek
+    ln -sf /home/${username}/.face /var/lib/AccountsService/icons/niek
 
     # Write the AccountsService user configuration file
-    cat <<EOF > /var/lib/AccountsService/users/niek
+    cat <<EOF > /var/lib/AccountsService/users/${username}
     [User]
-    Icon=/var/lib/AccountsService/icons/niek
+    Icon=/var/lib/AccountsService/icons/${username}
     X-AccountType=Regular
     EOF
 
@@ -58,7 +58,7 @@
 
   programs.noctalia-greeter = {
     enable = true;
-    passwordless-sync-users = [ "niek" ];
+    passwordless-sync-users = [ username ];
 
     settings = {
       appearance.hide_logo = true;

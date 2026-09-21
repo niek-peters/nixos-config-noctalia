@@ -40,10 +40,18 @@
       obsidian-extensions,
       ...
     }@inputs:
+    let
+      sharedArgs = {
+        inherit inputs;
+        username = "niek";
+        # fullname = "Niek Peters";
+      };
+    in
     {
       nixosConfigurations.nixos-acer-laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
+        # specialArgs = { inherit inputs; };
+        specialArgs = sharedArgs;
         modules = [
           ./hosts/acer-laptop/configuration.nix
           ./hosts/acer-laptop/hardware-configuration.nix
@@ -52,7 +60,8 @@
           home-manager.nixosModules.home-manager
           {
             home-manager = {
-              extraSpecialArgs = { inherit inputs; };
+              # extraSpecialArgs = { inherit inputs; };
+              extraSpecialArgs = sharedArgs;
               useGlobalPkgs = true;
               useUserPackages = true;
               users.niek = {

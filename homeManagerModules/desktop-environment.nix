@@ -301,7 +301,7 @@ in
     #  };
     #};
   };
-  xdg.configFile."noctalia/config.toml".source = ./noctalia.toml;
+  xdg.configFile."noctalia/config.toml".source = ../config/noctalia.toml;
 
   home.pointerCursor = {
     enable = true;

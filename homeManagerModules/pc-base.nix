@@ -1,6 +1,6 @@
-{ inputs, config, ... }: {
-  home.username = "niek";
-  home.homeDirectory = "/home/niek";
+{ inputs, config, username, ... }: {
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
   home.stateVersion = "26.05";
 
   programs.git = {
@@ -16,7 +16,7 @@
   programs.bash = {
     enable = true;
     shellAliases = {
-      nrs = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles-noctalia#nixos-acer-laptop";
+      nrs = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles-noctalia#${config.networking.hostName}";
     };
   };
 
@@ -24,7 +24,7 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      nrs = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles-noctalia#nixos-acer-laptop";
+      nrs = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles-noctalia#${config.networking.hostName}";
     };
     interactiveShellInit = ''
       set fish_greeting'''
@@ -44,7 +44,7 @@
         pad = "25x25";
         bold-text-in-bright = "no";
         gamma-correct-blending = "no";
-        include="~/.config/foot/themes/noctalia";
+        include = "~/.config/foot/themes/noctalia";
       };
       scrollback.lines = 10000;
       cursor = {

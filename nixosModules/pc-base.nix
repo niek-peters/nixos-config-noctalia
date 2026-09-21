@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, username, ... }: {
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -39,9 +39,9 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."niek" = {
+  users.users."${username}" = {
     isNormalUser = true;
-    description = "Niek Peters";
+    # description = "Niek Peters";
     homeMode = "755";
     extraGroups = [
       "networkmanager"
