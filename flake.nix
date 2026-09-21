@@ -44,6 +44,7 @@
       sharedArgs = {
         inherit inputs;
         username = "niek";
+        hostname = "nixos-acer-laptop";
         # fullname = "Niek Peters";
       };
     in

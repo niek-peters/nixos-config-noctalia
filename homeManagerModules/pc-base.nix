@@ -1,4 +1,11 @@
-{ inputs, config, username, ... }: {
+{
+  inputs,
+  config,
+  username,
+  hostname,
+  ...
+}:
+{
   home.username = username;
   home.homeDirectory = "/home/${username}";
   home.stateVersion = "26.05";
@@ -16,7 +23,7 @@
   programs.bash = {
     enable = true;
     shellAliases = {
-      nrs = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles-noctalia#${config.networking.hostName}";
+      nrs = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles-noctalia#${hostname}";
     };
   };
 
@@ -24,7 +31,7 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      nrs = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles-noctalia#${config.networking.hostName}";
+      nrs = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles-noctalia#${hostname}";
     };
     interactiveShellInit = ''
       set fish_greeting'''

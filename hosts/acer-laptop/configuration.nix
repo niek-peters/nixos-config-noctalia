@@ -1,8 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, hostname, ... }: {
   # enable/disable nixosModules here once we make them togglable
 
   # device-specific config here
-  networking.hostName = "nixos-acer-laptop";
+  networking.hostName = hostname;
 
   hardware.amdgpu.legacySupport.enable = true;
 
