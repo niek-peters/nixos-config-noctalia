@@ -1,4 +1,11 @@
-{ inputs, pkgs, username, ... }: {
+{
+  inputs,
+  pkgs,
+  username,
+  hostname,
+  ...
+}:
+{
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -11,6 +18,7 @@
   systemd.tpm2.enable = false;
   boot.initrd.systemd.tpm2.enable = false;
 
+  networking.hostName = hostname;
   networking.networkmanager.enable = true;
 
   services.pipewire = {

@@ -3,8 +3,10 @@
 Note that this setup assumes a single-user system.
 
 1. Clone this repo in the home directory (~)
-2. Add symlink to it: `sudo ln -s /home/<username>/<repo-name> /etc/nixos`
-3. Run `sudo nixos-rebuild switch`
+2. Create hosts folder (with configuration.nix and home.nix) for this device if it doesn't exist yet
+3. Copy `/etc/nixos/hardware-configuration.nix` to it
+4. Add symlink to it: `sudo ln -s /home/<username>/<repo-name> /etc/nixos`
+5. Run `sudo nixos-rebuild switch`
 
 And you're done!
 

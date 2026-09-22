@@ -40,36 +40,42 @@
       obsidian-extensions,
       ...
     }@inputs:
-
-    {
-      nixosConfigurations.nixos-acer-laptop =
-        let
-          sharedArgs = {
-            inherit inputs;
-            username = "niek";
-            hostname = "nixos-acer-laptop";
-            # fullname = "Niek Peters";
-          };
-        in
-        nixpkgs.lib.nixosSystem {
+    let
+      hosts = [
+        {
+          username = "niek";
+          hostname = "nixos-acer-laptop";
           system = "x86_64-linux";
-          # specialArgs = { inherit inputs; };
-          specialArgs = sharedArgs;
+        }
+      ];
+
+      mkNixosConfiguration =
+        {
+          username,
+          hostname,
+          system,
+        }:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs username hostname;
+          };
           modules = [
-            ./hosts/${sharedArgs.hostname}/configuration.nix
-            ./hosts/${sharedArgs.hostname}/hardware-configuration.nix
+            ./hosts/${hostname}/configuration.nix
+            ./hosts/${hostname}/hardware-configuration.nix
             ./nixosModules
 
             home-manager.nixosModules.home-manager
             {
               home-manager = {
-                # extraSpecialArgs = { inherit inputs; };
-                extraSpecialArgs = sharedArgs;
+                extraSpecialArgs = {
+                  inherit inputs username hostname;
+                };
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.niek = {
+                users.${username} = {
                   imports = [
-                    ./hosts/${sharedArgs.hostname}/home.nix
+                    ./hosts/${hostname}/home.nix
                     ./homeManagerModules
                   ];
                 };
@@ -84,7 +90,13 @@
             }
           ];
         };
-
-      #homeManagerModules.default = ./homeManagerModules;
+    in
+    {
+      nixosConfigurations = builtins.listToAttrs (
+        map (host: {
+          name = host.hostname;
+          value = mkNixosConfiguration host;
+        }) hosts
+      );
     };
 }
