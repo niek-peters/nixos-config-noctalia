@@ -628,13 +628,13 @@ transition_on_startup = false
     recursive = true
 
     [wallpaper.default]
-    path = "/home/niek/Pictures/Wallpapers/wallhaven-zyxvqy.jpg"
+    path = "/home/niek/Pictures/Wallpapers/desktop-wallpaper-hq.jpg"
 
     [wallpaper.last]
-    path = "/home/niek/Pictures/Wallpapers/wallhaven-zyxvqy.jpg"
+    path = "/home/niek/Pictures/Wallpapers/desktop-wallpaper-hq.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/niek/Pictures/Wallpapers/wallhaven-zyxvqy.jpg"
+    path = "/home/niek/Pictures/Wallpapers/desktop-wallpaper-hq.jpg"
 
 [weather]
 effects = true
