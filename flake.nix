@@ -56,8 +56,8 @@
           # specialArgs = { inherit inputs; };
           specialArgs = sharedArgs;
           modules = [
-            ./hosts/acer-laptop/configuration.nix
-            ./hosts/acer-laptop/hardware-configuration.nix
+            ./hosts/${sharedArgs.hostname}/configuration.nix
+            ./hosts/${sharedArgs.hostname}/hardware-configuration.nix
             ./nixosModules
 
             home-manager.nixosModules.home-manager
@@ -69,7 +69,7 @@
                 useUserPackages = true;
                 users.niek = {
                   imports = [
-                    ./hosts/acer-laptop/home.nix
+                    ./hosts/${sharedArgs.hostname}/home.nix
                     ./homeManagerModules
                   ];
                 };
