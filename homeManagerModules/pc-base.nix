@@ -2,7 +2,6 @@
   inputs,
   config,
   username,
-  hostname,
   ...
 }:
 {
@@ -23,7 +22,7 @@
   programs.bash = {
     enable = true;
     shellAliases = {
-      nrs = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles-noctalia#${hostname}";
+      nrs = "sudo nixos-rebuild switch";
     };
   };
 
@@ -31,7 +30,7 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      nrs = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles-noctalia#${hostname}";
+      nrs = "sudo nixos-rebuild switch";
     };
     interactiveShellInit = ''
       set fish_greeting'''

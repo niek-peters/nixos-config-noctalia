@@ -40,48 +40,50 @@
       obsidian-extensions,
       ...
     }@inputs:
-    let
-      sharedArgs = {
-        inherit inputs;
-        username = "niek";
-        hostname = "nixos-acer-laptop";
-        # fullname = "Niek Peters";
-      };
-    in
+
     {
-      nixosConfigurations.nixos-acer-laptop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        # specialArgs = { inherit inputs; };
-        specialArgs = sharedArgs;
-        modules = [
-          ./hosts/acer-laptop/configuration.nix
-          ./hosts/acer-laptop/hardware-configuration.nix
-          ./nixosModules
+      nixosConfigurations.nixos-acer-laptop =
+        let
+          sharedArgs = {
+            inherit inputs;
+            username = "niek";
+            hostname = "nixos-acer-laptop";
+            # fullname = "Niek Peters";
+          };
+        in
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          # specialArgs = { inherit inputs; };
+          specialArgs = sharedArgs;
+          modules = [
+            ./hosts/acer-laptop/configuration.nix
+            ./hosts/acer-laptop/hardware-configuration.nix
+            ./nixosModules
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              # extraSpecialArgs = { inherit inputs; };
-              extraSpecialArgs = sharedArgs;
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.niek = {
-                imports = [
-                  ./hosts/acer-laptop/home.nix
-                  ./homeManagerModules
-                ];
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                # extraSpecialArgs = { inherit inputs; };
+                extraSpecialArgs = sharedArgs;
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.niek = {
+                  imports = [
+                    ./hosts/acer-laptop/home.nix
+                    ./homeManagerModules
+                  ];
+                };
+                backupFileExtension = "backup";
               };
-              backupFileExtension = "backup";
-            };
-          }
+            }
 
-          {
-            nixpkgs.overlays = [
-              obsidian-extensions.overlays.default
-            ];
-          }
-        ];
-      };
+            {
+              nixpkgs.overlays = [
+                obsidian-extensions.overlays.default
+              ];
+            }
+          ];
+        };
 
       #homeManagerModules.default = ./homeManagerModules;
     };
