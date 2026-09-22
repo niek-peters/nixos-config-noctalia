@@ -39,10 +39,10 @@
 
   programs.spicetify = {
     enable = true;
-    colorScheme = "noctalia";
+    colorScheme = "Comfy";
     theme = {
       name = "Colorful";
-      src = ../config/spicetify/Themes/Colorful;
+      src = ../config/spicetify/Themes/Comfy;
       # homeConfig = true;
       # sidebarConfig = true;
       # injectCss = true;
