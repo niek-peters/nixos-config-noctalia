@@ -18,6 +18,8 @@
   systemd.tpm2.enable = false;
   boot.initrd.systemd.tpm2.enable = false;
 
+  boot.loader.efi.canTouchEfiVariables = true;
+
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
 
