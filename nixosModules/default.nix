@@ -1,4 +1,4 @@
-{ }: {
+{ ... }: {
   imports = [
     ./pc-base.nix
     ./laptop.nix
