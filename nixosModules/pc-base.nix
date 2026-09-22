@@ -67,6 +67,11 @@
 
   fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji-blob-bin
+    liberation_ttf
+    dejavu_fonts
     nerd-fonts.jetbrains-mono
   ];
 

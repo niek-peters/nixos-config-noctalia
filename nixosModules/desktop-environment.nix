@@ -42,7 +42,7 @@
     mkdir -p /var/lib/AccountsService/icons
 
     # Create symlink (dangling symlinks are allowed, so this won't fail if .face isn't there yet)
-    ln -sf /home/${username}/.face /var/lib/AccountsService/icons/niek
+    ln -sf /home/${username}/.face /var/lib/AccountsService/icons/${username}
 
     # Write the AccountsService user configuration file
     cat <<EOF > /var/lib/AccountsService/users/${username}
