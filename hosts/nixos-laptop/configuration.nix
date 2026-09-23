@@ -2,8 +2,8 @@
   # enable/disable nixosModules here once we make them togglable
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  
 
+  boot.kernelParams = [ "acpi_backlight=native" ];
   # # device-specific config here
   # hardware.amdgpu.legacySupport.enable = true;
 
@@ -25,6 +25,5 @@
   #       cmdline: root=UUID=37488b52-d0c9-4066-973e-bc69e1471c92 rootfstype=btrfs rootfstype=btrfs rootflags=subvol=@ rw quiet splash
   #   ";
   # };
-
 
 }
