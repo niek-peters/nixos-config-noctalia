@@ -82,284 +82,286 @@ in
   # ];
 
   #programs.kitty.enable = true;
-  wayland.windowManager.hyprland = {
-    enable = true;
-    configType = "lua";
+  config = {
+    wayland.windowManager.hyprland = {
+      enable = true;
+      configType = "lua";
 
-    settings = {
-      #mod = {
-      #  _var = "SUPER";
-      #};
-      config = {
-        general = {
-          gaps_in = 5;
-          gaps_out = 10;
-        };
-
-        decoration = {
-          rounding = 8;
-          rounding_power = 2;
-
-          shadow = {
-            enabled = true;
-            range = 4;
-            render_power = 3;
-            color = "0xee1a1a1a";
+      settings = {
+        #mod = {
+        #  _var = "SUPER";
+        #};
+        config = {
+          general = {
+            gaps_in = 5;
+            gaps_out = 10;
           };
 
-          blur = {
-            enabled = true;
-            size = 2;
-            passes = 2;
-            vibrancy = 0.1696;
+          decoration = {
+            rounding = 8;
+            rounding_power = 2;
+
+            shadow = {
+              enabled = true;
+              range = 4;
+              render_power = 3;
+              color = "0xee1a1a1a";
+            };
+
+            blur = {
+              enabled = true;
+              size = 2;
+              passes = 2;
+              vibrancy = 0.1696;
+            };
+          };
+
+          input = {
+            touchpad.natural_scroll = true;
+            natural_scroll = true;
+
+            kb_layout = "us";
+            kb_variant = "intl";
+          };
+
+          # misc.force_default_wallpaper = 0;
+          misc = {
+            disable_splash_rendering = true;
+            disable_hyprland_logo = true;
           };
         };
 
-        input = {
-          touchpad.natural_scroll = true;
-          natural_scroll = true;
-
-          kb_layout = "us";
-          kb_variant = "intl";
+        gesture = {
+          fingers = 3;
+          direction = "horizontal";
+          action = "workspace";
         };
 
-        # misc.force_default_wallpaper = 0;
-        misc = {
-          disable_splash_rendering = true;
-          disable_hyprland_logo = true;
+        # monitor = {
+        #   output = "eDP-1";
+        #   mode = "1920x1080@60.01Hz";
+        #   position = "0x0";
+        #   scale = 1.25;
+        # };
+
+        on = {
+          _args = [
+            "hyprland.start"
+            (
+              if config.desktop-environment.screenRotation.enable then
+                mkExec2 "noctalia" "iio-hyprland"
+              else
+                mkExec1 "noctalia"
+            )
+            #(lib.generators.mkLuaInline ''
+            #  function()
+            #    hl.exec_cmd("noctalia")
+            #  end
+            #'')
+          ];
         };
-      };
 
-      gesture = {
-        fingers = 3;
-        direction = "horizontal";
-        action = "workspace";
-      };
+        bind = [
+          # General
+          (mkBind "SUPER + Q" "window.close()")
+          (mkBind "SUPER + F" "window.fullscreen()")
+          (mkBind "SUPER + M" ''workspace.toggle_special("music")'')
 
-      # monitor = {
-      #   output = "eDP-1";
-      #   mode = "1920x1080@60.01Hz";
-      #   position = "0x0";
-      #   scale = 1.25;
-      # };
+          # Applications/Tools
+          (mkBindExec "SUPER + T" "foot")
+          (mkBindExec "SUPER + W" "helium")
+          (mkBindExec "SUPER + E" "thunar")
+          (mkBindExec "SUPER + C" "code")
+          (mkBindExec "SUPER + O" "obsidian")
+          (mkBindExec "SUPER + P" "drawing")
+          (mkBindExec "SUPER + D" "discord")
+          (mkBindExec "SUPER + S" ''grim -g \"$(slurp -d)\" - | wl-copy'')
+          (mkBindExec "SUPER + SHIFT + S" ''grim -g \"$(slurp -d)\" - | satty -f - --copy-command wl-copy -o \"~/Pictures/Screenshots/%Y%m%d_%H%M%S.png\"'')
 
-      on = {
-        _args = [
-          "hyprland.start"
-          (
-            if config.desktop-environment.screenRotation.enable then
-              mkExec2 "noctalia" "iio-hyprland"
-            else
-              mkExec1 "noctalia"
-          )
-          #(lib.generators.mkLuaInline ''
-          #  function()
-          #    hl.exec_cmd("noctalia")
-          #  end
-          #'')
+          # Recommended Noctalia base keybinds
+          (mkBindIPC "SUPER + Space" "panel-toggle launcher")
+          (mkBindIPC "SUPER + period" "panel-toggle control-center")
+          (mkBindIPC "SUPER + comma" "settings-toggle")
+          (mkBindIPC "ALT + Tab" "window-switcher")
+
+          # Noctalia brightness/volume keybinds
+          (mkBindIPC "SUPER + UP" "volume-up")
+          (mkBindIPC "SUPER + DOWN" "volume-down")
+          (mkBindIPC "SUPER + LEFT" "brightness-up")
+          (mkBindIPC "SUPER + RIGHT" "brightness-down")
+
+          # Workspace switching
+          (mkFocusWorkspace 1)
+          (mkFocusWorkspace 2)
+          (mkFocusWorkspace 3)
+          (mkFocusWorkspace 4)
+          (mkFocusWorkspace 5)
+
+          # Move active window to workspace
+          (mkMoveWorkspace 1)
+          (mkMoveWorkspace 2)
+          (mkMoveWorkspace 3)
+          (mkMoveWorkspace 4)
+          (mkMoveWorkspace 5)
+
+          # Rearrange windows within workspace
+          (mkMoveDir "LEFT" "left")
+          (mkMoveDir "RIGHT" "right")
+          (mkMoveDir "UP" "up")
+          (mkMoveDir "DOWN" "down")
+
+          # Mouse window binds (Move & Resize)
+          (mkMouseBind "SUPER + mouse:272" "window.drag()")
+          (mkMouseBind "SUPER + mouse:273" "window.resize()")
+
+          # This doesn't work: Swap current split orientation between vertical and horizontal
+          #(mkBind "SUPER + J" "layout(\"swapsplit\")")
+
+          #(mkBind "SUPER + T" "kitty")
+          #(mkBind "SUPER + Space" "noctalia-launcher")
+        ];
+
+        workspace_rule = [
+          (mkWorkspace 1)
+          (mkWorkspace 2)
+          (mkWorkspace 3)
+          (mkWorkspace 4)
+          (mkWorkspace 5)
+          {
+            workspace = "special:music";
+            on_created_empty = "spotify";
+          }
+        ];
+
+        window_rule = [
+          {
+            match.class = "dev.noctalia.Noctalia";
+            float = true;
+            size = [
+              600
+              800
+            ];
+          }
+          # {
+          #   match.class = "spotify";
+          #   workspace = "special:music";
+          # }
+        ];
+
+        layer_rule = {
+          name = "noctalia";
+          match = {
+            namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$";
+          };
+          no_anim = true;
+          ignore_alpha = 0.5;
+          blur = true;
+          blur_popups = true;
+        };
+
+        env = [
+          {
+            _args = [
+              "QT_QPA_PLATFORMTHEME"
+              "qt5ct"
+            ];
+          }
+          {
+            _args = [
+              "QT_QPA_PLATFORMTHEME"
+              "qt6ct"
+            ];
+          }
         ];
       };
+      extraConfig = ''
+        local noctaliaPath = os.getenv("HOME") .. "/.config/hypr/noctalia.lua"
+        local file = io.open(noctaliaPath, "r")
 
-      bind = [
-        # General
-        (mkBind "SUPER + Q" "window.close()")
-        (mkBind "SUPER + F" "window.fullscreen()")
-        (mkBind "SUPER + M" ''workspace.toggle_special("music")'')
+        if file then
+            file:close()
+            local chunk, err = loadfile(noctaliaPath)
+            if chunk then
+                local success, result = pcall(chunk)
+                if success then
+                    if type(result) == "table" and type(result.apply_theme) == "function" then
+                        result.apply_theme()
+                    elseif type(result) == "function" then
+                        result()
+                    end
+                else
+                    print("Error executing noctalia.lua: " .. tostring(result))
+                end
+            else
+                print("Error loading noctalia.lua: " .. tostring(err))
+            end
+        end
+      '';
+    };
 
-        # Applications/Tools
-        (mkBindExec "SUPER + T" "foot")
-        (mkBindExec "SUPER + W" "helium")
-        (mkBindExec "SUPER + E" "thunar")
-        (mkBindExec "SUPER + C" "code")
-        (mkBindExec "SUPER + O" "obsidian")
-        (mkBindExec "SUPER + P" "drawing")
-        (mkBindExec "SUPER + D" "discord")
-        (mkBindExec "SUPER + S" ''grim -g \"$(slurp -d)\" - | wl-copy'')
-        (mkBindExec "SUPER + SHIFT + S" ''grim -g \"$(slurp -d)\" - | satty -f - --copy-command wl-copy -o \"~/Pictures/Screenshots/%Y%m%d_%H%M%S.png\"'')
+    # Hint Electron apps to use Wayland
+    home.sessionVariables.NIXOS_OZONE_WL = "1";
 
-        # Recommended Noctalia base keybinds
-        (mkBindIPC "SUPER + Space" "panel-toggle launcher")
-        (mkBindIPC "SUPER + period" "panel-toggle control-center")
-        (mkBindIPC "SUPER + comma" "settings-toggle")
-        (mkBindIPC "ALT + Tab" "window-switcher")
+    programs.noctalia = {
+      enable = true;
+      #settings = {
+      #  theme = {
+      #    mode = "dark";
+      #    source = "wallpaper";
+      #  };
+      #  wallpaper = {
+      #    enabled = true;
+      #    default.path = "~/Pictures/Wallpapers/wallhaven-ymz61d.jpg";
+      #  };
+      #  brightness.monitor.eDP-1 = {
+      #    backend = "backlight";
+      #    backlight_device = "amdgpu_bl1";
+      #  };
+      #};
+    };
 
-        # Noctalia brightness/volume keybinds
-        (mkBindIPC "SUPER + UP" "volume-up")
-        (mkBindIPC "SUPER + DOWN" "volume-down")
-        (mkBindIPC "SUPER + LEFT" "brightness-up")
-        (mkBindIPC "SUPER + RIGHT" "brightness-down")
+    home.pointerCursor = {
+      enable = true;
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+      size = 24;
+      gtk.enable = true;
+      x11.enable = true;
+    };
 
-        # Workspace switching
-        (mkFocusWorkspace 1)
-        (mkFocusWorkspace 2)
-        (mkFocusWorkspace 3)
-        (mkFocusWorkspace 4)
-        (mkFocusWorkspace 5)
-
-        # Move active window to workspace
-        (mkMoveWorkspace 1)
-        (mkMoveWorkspace 2)
-        (mkMoveWorkspace 3)
-        (mkMoveWorkspace 4)
-        (mkMoveWorkspace 5)
-
-        # Rearrange windows within workspace
-        (mkMoveDir "LEFT" "left")
-        (mkMoveDir "RIGHT" "right")
-        (mkMoveDir "UP" "up")
-        (mkMoveDir "DOWN" "down")
-
-        # Mouse window binds (Move & Resize)
-        (mkMouseBind "SUPER + mouse:272" "window.drag()")
-        (mkMouseBind "SUPER + mouse:273" "window.resize()")
-
-        # This doesn't work: Swap current split orientation between vertical and horizontal
-        #(mkBind "SUPER + J" "layout(\"swapsplit\")")
-
-        #(mkBind "SUPER + T" "kitty")
-        #(mkBind "SUPER + Space" "noctalia-launcher")
-      ];
-
-      workspace_rule = [
-        (mkWorkspace 1)
-        (mkWorkspace 2)
-        (mkWorkspace 3)
-        (mkWorkspace 4)
-        (mkWorkspace 5)
-        {
-          workspace = "special:music";
-          on_created_empty = "spotify";
-        }
-      ];
-
-      window_rule = [
-        {
-          match.class = "dev.noctalia.Noctalia";
-          float = true;
-          size = [
-            600
-            800
-          ];
-        }
-        # {
-        #   match.class = "spotify";
-        #   workspace = "special:music";
-        # }
-      ];
-
-      layer_rule = {
-        name = "noctalia";
-        match = {
-          namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$";
-        };
-        no_anim = true;
-        ignore_alpha = 0.5;
-        blur = true;
-        blur_popups = true;
+    # Make GTK and Qt apps look good
+    # GTK Configuration
+    gtk = {
+      enable = true;
+      theme = {
+        name = "adw-gtk3-dark";
+        package = pkgs.adw-gtk3;
       };
-
-      env = [
-        {
-          _args = [
-            "QT_QPA_PLATFORMTHEME"
-            "qt5ct"
-          ];
-        }
-        {
-          _args = [
-            "QT_QPA_PLATFORMTHEME"
-            "qt6ct"
-          ];
-        }
-      ];
+      iconTheme = {
+        name = "Papirus-Dark";
+        package = pkgs.papirus-icon-theme;
+      };
+      font = {
+        name = "JetBrainsMono Nerd Font";
+        size = 10;
+      };
     };
-    extraConfig = ''
-      local noctaliaPath = os.getenv("HOME") .. "/.config/hypr/noctalia.lua"
-      local file = io.open(noctaliaPath, "r")
 
-      if file then
-          file:close()
-          local chunk, err = loadfile(noctaliaPath)
-          if chunk then
-              local success, result = pcall(chunk)
-              if success then
-                  if type(result) == "table" and type(result.apply_theme) == "function" then
-                      result.apply_theme()
-                  elseif type(result) == "function" then
-                      result()
-                  end
-              else
-                  print("Error executing noctalia.lua: " .. tostring(result))
-              end
-          else
-              print("Error loading noctalia.lua: " .. tostring(err))
-          end
-      end
-    '';
-  };
-
-  # Hint Electron apps to use Wayland
-  home.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  programs.noctalia = {
-    enable = true;
-    #settings = {
-    #  theme = {
-    #    mode = "dark";
-    #    source = "wallpaper";
-    #  };
-    #  wallpaper = {
-    #    enabled = true;
-    #    default.path = "~/Pictures/Wallpapers/wallhaven-ymz61d.jpg";
-    #  };
-    #  brightness.monitor.eDP-1 = {
-    #    backend = "backlight";
-    #    backlight_device = "amdgpu_bl1";
-    #  };
-    #};
-  };
-
-  home.pointerCursor = {
-    enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Ice";
-    size = 24;
-    gtk.enable = true;
-    x11.enable = true;
-  };
-
-  # Make GTK and Qt apps look good
-  # GTK Configuration
-  gtk = {
-    enable = true;
-    theme = {
-      name = "adw-gtk3-dark";
-      package = pkgs.adw-gtk3;
+    # Qt Configuration for cross-toolkit consistency
+    qt = {
+      enable = true;
+      # style.name = "fusion"; # Or kvantum depending on preference
+      # platformTheme.name = "gtk"; # Forces Qt apps to follow GTK/GNOME settings
+      qt6ctSettings = qtSettings;
+      qt5ctSettings = qtSettings;
     };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    font = {
-      name = "JetBrainsMono Nerd Font";
-      size = 10;
-    };
-  };
+    # Doesn't work
+    # xdg.configFile."Thunar/thunarrc".text = ''
+    #   [Configuration]
+    #   LastView=ThunarDetailsView
+    #   LastSidePane=ThunarTreeModel
+    # '';
 
-  # Qt Configuration for cross-toolkit consistency
-  qt = {
-    enable = true;
-    # style.name = "fusion"; # Or kvantum depending on preference
-    # platformTheme.name = "gtk"; # Forces Qt apps to follow GTK/GNOME settings
-    qt6ctSettings = qtSettings;
-    qt5ctSettings = qtSettings;
+    xfconf.settings.thunar."default-view" = "ThunarDetailsView";
   };
-  # Doesn't work
-  # xdg.configFile."Thunar/thunarrc".text = ''
-  #   [Configuration]
-  #   LastView=ThunarDetailsView
-  #   LastSidePane=ThunarTreeModel
-  # '';
-
-  xfconf.settings.thunar."default-view" = "ThunarDetailsView";
 }
