@@ -3,6 +3,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # for screen rotation in tablet mode
+  hardware.sensor.iio.enable = true;
+
   #boot.kernelParams = [ "acpi_backlight=video" ];
   # # device-specific config here
   # hardware.amdgpu.legacySupport.enable = true;
