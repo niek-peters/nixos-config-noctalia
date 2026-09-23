@@ -21,11 +21,12 @@ let
   };
   mkBindExec = key: cmd: (mkBind key ''exec_cmd("${cmd}")'');
   mkBindIPC = key: cmd: (mkBindExec key "noctalia msg ${cmd}");
-  mkExec =
-    cmd:
+  mkExec2 =
+    cmd1: cmd2:
     lib.generators.mkLuaInline ''
       function()
-        hl.exec_cmd("${cmd}")
+        hl.exec_cmd("${cmd1}")
+        hl.exec_cmd("${cmd2}")
       end
     '';
   #mkFunction = body: lib.generators.mkLuaInline ''
@@ -134,7 +135,7 @@ in
       on = {
         _args = [
           "hyprland.start"
-          (mkExec "noctalia")
+          (mkExec2 "noctalia" "iio-hyprland")
           #(lib.generators.mkLuaInline ''
           #  function()
           #    hl.exec_cmd("noctalia")

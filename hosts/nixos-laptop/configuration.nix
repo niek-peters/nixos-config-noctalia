@@ -5,6 +5,7 @@
 
   # for screen rotation in tablet mode
   hardware.sensor.iio.enable = true;
+  programs.iio-hyprland.enable = true;
 
   #boot.kernelParams = [ "acpi_backlight=video" ];
   # # device-specific config here

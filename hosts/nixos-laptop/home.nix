@@ -8,5 +8,6 @@
     mode = "1920x1080@60.01Hz";
     position = "0x0";
     scale = 1.25;
+    transform = 0;
   };
 }
