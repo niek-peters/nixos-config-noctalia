@@ -47,6 +47,11 @@
           hostname = "nixos-acer-laptop";
           system = "x86_64-linux";
         }
+        {
+          username = "niek";
+          hostname = "nixos-laptop";
+          system = "x86_64-linux";
+        }
       ];
 
       mkNixosConfiguration =
