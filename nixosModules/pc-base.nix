@@ -13,6 +13,8 @@
   hardware.bluetooth.enable = true;
   hardware.i2c.enable = true; # allegedly might be needed for external monitor brightness control
 
+  services.envfs.enable = true; # maps programs from PATH to /bin and /usr/bin
+
   services.power-profiles-daemon.enable = true;
 
   systemd.tpm2.enable = false;
