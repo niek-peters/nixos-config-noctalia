@@ -1,14 +1,16 @@
+# TODO
+
+- Make Noctalia config not use the .toml file --> use Nix instead (rn you need one .toml file per device because there are device-specific options in there)
+
 # First-time setup:
 
 Note that this setup assumes a single-user system.
 
 ## Pre-installation notes:
 
-TODO: document pre-installation things you need to do, like:
+Pre-installation things you need to do, like:
 
-1. Setting user password & hostname (I _think_ this is done in the installer?)
-2. Maybe kickstart config with GH for cloning private repo?
-3. It might be necessary to put this in the stock configuration.nix and rebuild once before the following steps:
+Put this in the stock configuration.nix and rebuild once before the following steps:
 
 ```nix
 nix.settings.experimental-features = [
@@ -32,7 +34,7 @@ And you're done!
 ## Extract Noctalia config
 
 ```bash
-noctalia config export > /etc/nixos/config/noctalia.toml
+noctalia config export > /etc/nixos/hosts/<hostname>/noctalia.toml
 ```
 
 ## Copy Spicetify config
