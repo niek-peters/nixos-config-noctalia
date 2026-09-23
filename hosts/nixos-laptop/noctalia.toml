@@ -283,7 +283,7 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
     box_height = 196.0
     box_width = 810.0
     cx = 768.0
-    cy = 645.60003662109375
+    cy = 645.60009765625
     enabled = true
     output = "eDP-1"
     placement_height = 864.0
@@ -359,11 +359,14 @@ scale = 1.0
     volume_output = true
     wifi = true
 
-[plugin_settings]
+[plugin_settings."yocraft/custom-shortcut"]
+icon = "rotate-clockwise"
+label = "Rotation Lock"
+onclick_cmd = "/etc/nixos/scripts/toggle-rotation-lock.sh"
 
 [plugins]
 auto_update = "all"
-enabled = []
+enabled = [ "yocraft/custom-shortcut" ]
 
     [[plugins.source]]
     enabled = true
