@@ -3,7 +3,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelParams = [ "acpi_backlight=video" ];
+  #boot.kernelParams = [ "acpi_backlight=video" ];
   # # device-specific config here
   # hardware.amdgpu.legacySupport.enable = true;
 
