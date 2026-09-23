@@ -11,6 +11,7 @@ libinput debug-events 2>/dev/null | while read -r line; do
             echo "1" > /tmp/tablet_mode_state
         elif [[ $line =~ "state 0" ]]; then
             echo "0" > /tmp/tablet_mode_state
+            echo "0" > /tmp/rotation_lock_state
             # Snap back to normal landscape and reset touch transform (0)
             hyprctl eval 'hl.monitor({ output = "eDP-1", mode = "preferred", position = "0x0", transform = 0 })'
             hyprctl eval 'hl.config({ input = { touchdevice = { transform = 0 } } })'
