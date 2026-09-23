@@ -60,6 +60,7 @@
       "wheel"
       "video"
       "render"
+      "input"
     ];
     packages = with pkgs; [ ];
   };
