@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   # enable/disable nixosModules here once we make them togglable
-
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
   
 
   # # device-specific config here
