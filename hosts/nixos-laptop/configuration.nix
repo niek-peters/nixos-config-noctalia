@@ -7,10 +7,11 @@
   hardware.sensor.iio.enable = true;
   # programs.iio-hyprland.enable = true;
 
-  # environment.systemPackages = with pkgs; [
-  #   iio-hyprland
-  #   jq
-  # ];
+  environment.systemPackages = with pkgs; [
+    libinput
+    # iio-hyprland
+    # jq
+  ];
 
   #boot.kernelParams = [ "acpi_backlight=video" ];
   # # device-specific config here
