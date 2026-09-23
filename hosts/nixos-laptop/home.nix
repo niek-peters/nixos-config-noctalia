@@ -3,6 +3,8 @@
 
   xdg.configFile."noctalia/config.toml".source = ./noctalia.toml;
 
+  desktop-environment.screenRotation.enable = true;
+
   wayland.windowManager.hyprland.settings.monitor = {
     output = "eDP-1";
     mode = "1920x1080@60.01Hz";

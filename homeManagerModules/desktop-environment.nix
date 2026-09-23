@@ -21,6 +21,13 @@ let
   };
   mkBindExec = key: cmd: (mkBind key ''exec_cmd("${cmd}")'');
   mkBindIPC = key: cmd: (mkBindExec key "noctalia msg ${cmd}");
+  mkExec1 =
+    cmd1:
+    lib.generators.mkLuaInline ''
+      function()
+        hl.exec_cmd("${cmd1}")
+      end
+    '';
   mkExec2 =
     cmd1: cmd2:
     lib.generators.mkLuaInline ''
@@ -63,6 +70,10 @@ in
   imports = [
     inputs.noctalia.homeModules.default
   ];
+
+  options = {
+    desktop-environment.screenRotation.enable = lib.mkEnableOption "enables screen rotation watcher";
+  };
 
   # home.packages = with pkgs; [
   #   # adw-gtk3
@@ -135,7 +146,12 @@ in
       on = {
         _args = [
           "hyprland.start"
-          (mkExec2 "noctalia" "iio-hyprland")
+          (
+            if config.desktop-environment.screenRotation.enable then
+              mkExec2 "noctalia" "iio-hyprland"
+            else
+              mkExec1 "noctalia"
+          )
           #(lib.generators.mkLuaInline ''
           #  function()
           #    hl.exec_cmd("noctalia")
