@@ -42,3 +42,19 @@ noctalia config export > /etc/nixos/hosts/<hostname>/noctalia.toml
 ```bash
 cp -r ~/.config/spicetify /etc/nixos/config/
 ```
+
+# Connect to Eduroam
+```sh
+sudo nmcli connection add \
+  type wifi \
+  con-name "eduroam" \
+  ssid "eduroam" \
+  wifi-sec.key-mgmt wpa-eap \
+  802-1x.eap ttls \
+  802-1x.anonymous-identity "anonymous@utwente.nl" \
+  802-1x.phase2-auth mschapv2 \
+  802-1x.identity "j.doe@student.utwente.nl" \
+  802-1x.password "YOUR_PASSWORD" \
+  802-1x.ca-cert "" \
+  connection.autoconnect yes
+```
