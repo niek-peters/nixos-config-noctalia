@@ -149,7 +149,7 @@ in
             "hyprland.start"
             (
               if config.desktop-environment.screenRotation.enable then
-                mkExec2 "noctalia" "iio-hyprland"
+                mkExec2 "noctalia" "/etc/nixos/scripts/rotate-laptop.sh"
               else
                 mkExec1 "noctalia"
             )
