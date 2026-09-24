@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, pkgs-unstable, ... }: {
   # enable/disable nixosModules here once we make them togglable
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -7,11 +7,13 @@
   hardware.sensor.iio.enable = true;
   # programs.iio-hyprland.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    libinput
-    # iio-hyprland
-    # jq
-  ];
+  environment.systemPackages =
+    (with pkgs; [
+      libinput
+      # iio-hyprland
+      # jq
+    ])
+    ++ (with pkgs-unstable; [ wvkbd ]);
 
   #boot.kernelParams = [ "acpi_backlight=video" ];
   # # device-specific config here

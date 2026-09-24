@@ -7,6 +7,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,6 +37,7 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       obsidian-extensions,
       ...
@@ -60,11 +62,19 @@
           hostname,
           system,
         }:
+        let
+          sharedArgs = {
+            inherit inputs username hostname;
+
+            pkgs-unstable = import nixpkgs-unstable {
+              system = system;
+              config.allowUnfree = true;
+            };
+          };
+        in
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit inputs username hostname;
-          };
+          specialArgs = sharedArgs;
           modules = [
             ./hosts/${hostname}/configuration.nix
             ./hosts/${hostname}/hardware-configuration.nix
@@ -73,9 +83,7 @@
             home-manager.nixosModules.home-manager
             {
               home-manager = {
-                extraSpecialArgs = {
-                  inherit inputs username hostname;
-                };
+                extraSpecialArgs = sharedArgs;
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.${username} = {

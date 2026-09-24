@@ -4,14 +4,29 @@
 echo "0" > /tmp/tablet_mode_state
 echo "0" > /tmp/rotation_lock_state
 
+# Function to manage keyboard process safely
+manage_keyboard() {
+    local action="$1"
+    if [[ "$action" == "start" ]]; then
+        # Check if already running; if not, launch wvkbd optimized for touch
+        if ! pgrep -x "wvkbd-mobintl" > /dev/null; then
+            wvkbd-mobintl --non-exclusive --auto &
+        fi
+    elif [[ "$action" == "stop" ]]; then
+        pkill -x "wvkbd-mobintl"
+    fi
+}
+
 # 1. Listen to physical tablet-mode switches in the background
 libinput debug-events 2>/dev/null | while read -r line; do
     if [[ $line =~ "tablet-mode" ]]; then
         if [[ $line =~ "state 1" ]]; then
             echo "1" > /tmp/tablet_mode_state
+            manage_keyboard "start"
         elif [[ $line =~ "state 0" ]]; then
             echo "0" > /tmp/tablet_mode_state
             echo "0" > /tmp/rotation_lock_state
+            manage_keyboard "stop"
             # Snap back to normal landscape and reset touch transform (0)
             hyprctl eval 'hl.monitor({ output = "eDP-1", mode = "preferred", position = "0x0", transform = 0 })'
             hyprctl eval 'hl.config({ input = { touchdevice = { transform = 0 } } })'
