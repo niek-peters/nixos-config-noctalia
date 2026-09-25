@@ -196,6 +196,7 @@ in
           (mkFocusWorkspace 3)
           (mkFocusWorkspace 4)
           (mkFocusWorkspace 5)
+          (mkFocusWorkspace 6)
 
           # Move active window to workspace
           (mkMoveWorkspace 1)
@@ -203,6 +204,7 @@ in
           (mkMoveWorkspace 3)
           (mkMoveWorkspace 4)
           (mkMoveWorkspace 5)
+          (mkMoveWorkspace 6)
 
           # Rearrange windows within workspace
           (mkMoveDir "LEFT" "left")
