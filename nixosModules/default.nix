@@ -5,5 +5,6 @@
     ./desktop-environment.nix
     ./productivity.nix
     ./garbage.nix
+    ./gaming.nix
   ];
 }
