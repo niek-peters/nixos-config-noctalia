@@ -56,7 +56,7 @@
     find /var/lib/AccountsService -type f -exec chmod 644 {} +
   '';
 
-  programs.noctalia-greeter = {
+  services.displayManager.noctalia-greeter = {
     enable = true;
     passwordless-sync-users = [ username ];
 
