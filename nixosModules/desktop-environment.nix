@@ -4,6 +4,9 @@
   username,
   ...
 }:
+let
+  pkgs-hyprland = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   imports = [
     inputs.noctalia-greeter.nixosModules.default
@@ -26,19 +29,15 @@
   };
 
   # Use Hyprland's Mesa version
-  hardware.graphics =
-    let
-      pkgs-hyprland = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-    in
-    {
-      package = pkgs-hyprland.mesa;
-      package32 = pkgs-hyprland.pkgsi686Linux.mesa;
-    };
+  hardware.graphics = {
+    package = pkgs-hyprland.mesa;
+    package32 = pkgs-hyprland.pkgsi686Linux.mesa;
+  };
 
   # Screensharing
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+    extraPortals = with pkgs-hyprland; [ xdg-desktop-portal-hyprland ];
   };
 
   # Optional auto-login instead of Noctalia greeter
