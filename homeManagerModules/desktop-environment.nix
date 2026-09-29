@@ -69,6 +69,7 @@ in
 {
   imports = [
     inputs.noctalia.homeModules.default
+    inputs.hyprland.homeManagerModules.default
   ];
 
   options = {
@@ -85,6 +86,8 @@ in
   config = {
     wayland.windowManager.hyprland = {
       enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+
       configType = "lua";
 
       plugins = [ inputs.hyprgrass.packages.${pkgs.system}.default ];
