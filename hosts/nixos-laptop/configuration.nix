@@ -10,7 +10,6 @@
   environment.systemPackages = with pkgs; [
     libinput
     wvkbd
-    hyprlandPlugins.hyprgrass
     # iio-hyprland
     # jq
   ];
