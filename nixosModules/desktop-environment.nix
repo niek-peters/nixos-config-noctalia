@@ -1,4 +1,10 @@
-{ inputs, pkgs, username, ... }: {
+{
+  inputs,
+  pkgs,
+  username,
+  ...
+}:
+{
   imports = [
     inputs.noctalia-greeter.nixosModules.default
   ];

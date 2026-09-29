@@ -10,7 +10,7 @@ manage_keyboard() {
     if [[ "$action" == "start" ]]; then
         # Check if already running; if not, launch wvkbd optimized for touch
         if ! pgrep -x "wvkbd-mobintl" > /dev/null; then
-            wvkbd-mobintl --non-exclusive --auto &
+            wvkbd-mobintl --non-exclusive --hidden &
         fi
     elif [[ "$action" == "stop" ]]; then
         pkill -x "wvkbd-mobintl"
