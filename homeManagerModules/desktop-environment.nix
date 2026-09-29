@@ -87,7 +87,7 @@ in
       enable = true;
       configType = "lua";
 
-      plugins = with pkgs.hyprlandPlugins; [ hyprgrass ];
+      plugins = [ inputs.hyprgrass.packages.${pkgs.system}.default ];
 
       settings = {
         #mod = {
