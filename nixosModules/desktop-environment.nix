@@ -9,9 +9,36 @@
     inputs.noctalia-greeter.nixosModules.default
   ];
 
+  # Cachix moment to prevent constant rebuilding
+  nix.settings = {
+    substituters = [ "https://hyprland.cachix.org" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+  };
+
   programs.hyprland = {
     enable = true;
     withUWSM = true;
+    # set the flake package
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    # make sure to also set the portal package, so that they are in sync
+    portalPackage =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
+
+  # Use Hyprland's Mesa version
+  hardware.graphics =
+    let
+      pkgs-hyprland = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+    in
+    {
+      package = pkgs-hyprland.mesa;
+      package32 = pkgs-hyprland.pkgsi686Linux.mesa;
+    };
+
+  # Screensharing
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
   };
 
   # Optional auto-login instead of Noctalia greeter
