@@ -85,14 +85,14 @@ in
   #programs.kitty.enable = true;
   config = {
     home.packages = [ inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default ];
-    
+
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
 
       configType = "lua";
 
-      # plugins = [ inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+      plugins = [ inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
       settings = {
         #mod = {
@@ -318,8 +318,6 @@ in
         ];
       };
       extraConfig = ''
-        hl.exec("hyprctl plugin load ${inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default}/lib/libhyprgrass.so")
-
         local noctaliaPath = os.getenv("HOME") .. "/.config/hypr/noctalia.lua"
         local file = io.open(noctaliaPath, "r")
 
