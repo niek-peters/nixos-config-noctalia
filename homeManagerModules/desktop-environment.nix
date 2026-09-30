@@ -170,24 +170,25 @@ in
               #'')
             ];
           }
-          # # TODO: merge this into the one above cause this is cursed
-          # # TODO: make adding this part conditional on some kind of touchscreen option
-          # {
-          #   _args = [
-          #     "hyprland.start"
-          #     (lib.generators.mkLuaInline ''
-          #       function()
-          #         hl.plugin.hyprgrass.bind({
-          #             pattern = {
-          #               kind = "tap",
-          #               fingers = 3
-          #             },
-          #             action = hl.dsp.exec_cmd("/etc/nixos/scripts/toggle-onscreen-keyboard.sh")
-          #           })
-          #       end
-          #     '')
-          #   ];
-          # }
+          # TODO: make adding this part conditional on some kind of touchscreen option
+          {
+            _args = [
+              "config.reloaded"
+              (lib.generators.mkLuaInline ''
+                function()
+                  if hl.plugin.hyprgrass ~= nil then
+                    hl.plugin.hyprgrass.bind({
+                      pattern = {
+                        kind = "tap",
+                        fingers = 3
+                      },
+                      action = hl.dsp.exec_cmd("/etc/nixos/scripts/toggle-onscreen-keyboard.sh")
+                    })
+                  end
+                end
+              '')
+            ];
+          }
         ];
 
         bind = [
@@ -338,16 +339,6 @@ in
             else
                 print("Error loading noctalia.lua: " .. tostring(err))
             end
-        end
-
-        if hl.plugin.hyprgrass ~= nil then
-          hl.plugin.hyprgrass.bind({
-            pattern = {
-              kind = "tap",
-              fingers = 3
-            },
-            action = hl.dsp.exec_cmd("/etc/nixos/scripts/toggle-onscreen-keyboard.sh")
-          })
         end
       '';
     };
