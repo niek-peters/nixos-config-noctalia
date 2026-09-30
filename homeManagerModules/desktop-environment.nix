@@ -177,7 +177,6 @@ in
               "hyprland.start"
               (lib.generators.mkLuaInline ''
                 function()
-                  hl.plugin.load("${inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default}")
                   hl.plugin.hyprgrass.bind({
                       pattern = {
                         kind = "tap",
@@ -319,6 +318,8 @@ in
         ];
       };
       extraConfig = ''
+        hl.exec("hyprctl plugin load ${inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default}/lib/libhyprgrass.so")
+
         local noctaliaPath = os.getenv("HOME") .. "/.config/hypr/noctalia.lua"
         local file = io.open(noctaliaPath, "r")
 
