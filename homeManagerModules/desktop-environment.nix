@@ -92,7 +92,7 @@ in
 
       configType = "lua";
 
-      plugins = [ inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+      # plugins = [ inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
       settings = {
         #mod = {
@@ -168,6 +168,18 @@ in
               #    hl.exec_cmd("noctalia")
               #  end
               #'')
+            ];
+          }
+          {
+            _args = [
+              "hyprland.start"
+              (lib.generators.mkLuaInline ''
+                function()
+                  hl.exec_cmd("hyprctl plugin load ${
+                    inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default
+                  }/lib/libhyprgrass.so && hyprctl reload")
+                end
+              '')
             ];
           }
           # TODO: make adding this part conditional on some kind of touchscreen option
