@@ -16,7 +16,7 @@ let
     _args = [
       key
       (lib.generators.mkLuaInline "hl.dsp.${cmd}")
-      { repeat = true; }
+      { repeating = true; }
     ];
   };
   mkMouseBind = key: cmd: {
