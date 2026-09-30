@@ -176,6 +176,8 @@ in
               "config.reloaded"
               (lib.generators.mkLuaInline ''
                 function()
+                  hl.exec_cmd("noctalia msg notification-show \"Config reloaded\"")
+                  
                   if hl.plugin.hyprgrass ~= nil then
                     hl.plugin.hyprgrass.bind({
                       pattern = {
@@ -184,6 +186,8 @@ in
                       },
                       action = hl.dsp.exec_cmd("/etc/nixos/scripts/toggle-onscreen-keyboard.sh")
                     })
+
+                    hl.exec_cmd("noctalia msg notification-show \"Hyprgrass bind added\"")
                   end
                 end
               '')
