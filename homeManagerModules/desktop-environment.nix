@@ -232,15 +232,14 @@ in
         ];
 
         # TODO: make adding this part conditional on some kind of touchscreen option
-        plugin.hyprgrass.bind = [
-          (lib.generators.mkLuaInline ''
-            {
-              pattern = {
-                kind = "tap";
-                fingers = 3;
-              };
-              action = hl.dsp.exec_cmd("/etc/nixos/scripts/toggle-onscreen-keyboard.sh");
-            }'')
+        "plugin.hyprgrass.bind" = [
+          {
+            pattern = {
+              kind = "tap";
+              fingers = 3;
+            };
+            action = lib.generators.mkLuaInline ''hl.dsp.exec_cmd("/etc/nixos/scripts/toggle-onscreen-keyboard.sh")'';
+          }
         ];
 
         workspace_rule = [
