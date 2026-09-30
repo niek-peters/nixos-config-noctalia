@@ -34,11 +34,11 @@ in
     package32 = pkgs-hyprland.pkgsi686Linux.mesa;
   };
 
-  # Screensharing
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs-hyprland; [ xdg-desktop-portal-hyprland ];
-  };
+  # # Screensharing
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = with pkgs-hyprland; [ xdg-desktop-portal-hyprland ];
+  # };
 
   # Optional auto-login instead of Noctalia greeter
   # services.greetd = {
