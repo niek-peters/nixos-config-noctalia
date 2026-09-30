@@ -12,6 +12,13 @@ let
       (lib.generators.mkLuaInline "hl.dsp.${cmd}")
     ];
   };
+  mkRepeatBind = key: cmd: {
+    _args = [
+      key
+      (lib.generators.mkLuaInline "hl.dsp.${cmd}")
+      { repeat = true; }
+    ];
+  };
   mkMouseBind = key: cmd: {
     _args = [
       key
@@ -21,6 +28,8 @@ let
   };
   mkBindExec = key: cmd: (mkBind key ''exec_cmd("${cmd}")'');
   mkBindIPC = key: cmd: (mkBindExec key "noctalia msg ${cmd}");
+  mkRepeatBindIPC = key: cmd: (mkRepeatBind key ''exec_cmd("noctalia msg ${cmd}")'');
+
   mkExec1 =
     cmd1:
     lib.generators.mkLuaInline ''
@@ -228,10 +237,12 @@ in
           (mkBindIPC "ALT + Tab" "window-switcher")
 
           # Noctalia brightness/volume keybinds
-          (mkBindIPC "SUPER + UP" "volume-up")
-          (mkBindIPC "SUPER + DOWN" "volume-down")
-          (mkBindIPC "SUPER + LEFT" "brightness-up")
-          (mkBindIPC "SUPER + RIGHT" "brightness-down")
+          (mkRepeatBindIPC "SUPER + UP" "volume-up")
+          (mkRepeatBindIPC "SUPER + DOWN" "volume-down")
+          (mkRepeatBindIPC "XF86AudioRaiseVolume" "volume-up")
+          (mkRepeatBindIPC "XF86AudioLowerVolume" "volume-down")
+          (mkRepeatBindIPC "SUPER + RIGHT" "brightness-up")
+          (mkRepeatBindIPC "SUPER + LEFT" "brightness-down")
 
           # Workspace switching
           (mkFocusWorkspace 1)
