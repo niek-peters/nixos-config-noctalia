@@ -82,10 +82,10 @@ in
   #   papirus-folders
   # ];
 
-  home.packages = [ inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default ];
-
   #programs.kitty.enable = true;
   config = {
+    home.packages = [ inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+    
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
