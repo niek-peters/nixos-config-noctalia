@@ -82,6 +82,8 @@ in
   #   papirus-folders
   # ];
 
+  home.packages = [ inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+
   #programs.kitty.enable = true;
   config = {
     wayland.windowManager.hyprland = {
@@ -90,7 +92,7 @@ in
 
       configType = "lua";
 
-      plugins = [ inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+      # plugins = [ inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
       settings = {
         #mod = {
@@ -151,22 +153,43 @@ in
         #   scale = 1.25;
         # };
 
-        on = {
-          _args = [
-            "hyprland.start"
-            (
-              if config.desktop-environment.screenRotation.enable then
-                mkExec2 "noctalia" "/etc/nixos/scripts/rotate-laptop.sh"
-              else
-                mkExec1 "noctalia"
-            )
-            #(lib.generators.mkLuaInline ''
-            #  function()
-            #    hl.exec_cmd("noctalia")
-            #  end
-            #'')
-          ];
-        };
+        on = [
+          {
+            _args = [
+              "hyprland.start"
+              (
+                if config.desktop-environment.screenRotation.enable then
+                  mkExec2 "noctalia" "/etc/nixos/scripts/rotate-laptop.sh"
+                else
+                  mkExec1 "noctalia"
+              )
+              #(lib.generators.mkLuaInline ''
+              #  function()
+              #    hl.exec_cmd("noctalia")
+              #  end
+              #'')
+            ];
+          }
+          # TODO: merge this into the one above cause this is cursed
+          # TODO: make adding this part conditional on some kind of touchscreen option
+          {
+            _args = [
+              "hyprland.start"
+              (lib.generators.mkLuaInline ''
+                function()
+                  hl.plugin.load("${inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default}")
+                  hl.plugin.hyprgrass.bind({
+                      pattern = {
+                        kind = "tap",
+                        fingers = 3
+                      },
+                      action = hl.dsp.exec_cmd("/etc/nixos/scripts/toggle-onscreen-keyboard.sh")
+                    })
+                end
+              '')
+            ];
+          }
+        ];
 
         bind = [
           # General
@@ -231,16 +254,16 @@ in
           #(mkBind "SUPER + Space" "noctalia-launcher")
         ];
 
-        # TODO: make adding this part conditional on some kind of touchscreen option
-        "plugin.hyprgrass.bind" = [
-          {
-            pattern = {
-              kind = "tap";
-              fingers = 3;
-            };
-            action = lib.generators.mkLuaInline ''hl.dsp.exec_cmd("/etc/nixos/scripts/toggle-onscreen-keyboard.sh")'';
-          }
-        ];
+        # # TODO: make adding this part conditional on some kind of touchscreen option
+        # "plugin.hyprgrass.bind" = [
+        #   {
+        #     pattern = {
+        #       kind = "tap";
+        #       fingers = 3;
+        #     };
+        #     action = lib.generators.mkLuaInline ''hl.dsp.exec_cmd("/etc/nixos/scripts/toggle-onscreen-keyboard.sh")'';
+        #   }
+        # ];
 
         workspace_rule = [
           (mkWorkspace 1)
