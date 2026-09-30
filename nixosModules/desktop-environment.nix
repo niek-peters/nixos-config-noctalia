@@ -12,11 +12,11 @@ in
     inputs.noctalia-greeter.nixosModules.default
   ];
 
-  # # Cachix moment to prevent constant rebuilding
-  # nix.settings = {
-  #   substituters = [ "https://hyprland.cachix.org" ];
-  #   trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-  # };
+  # Cachix moment to prevent constant rebuilding
+  nix.settings = {
+    substituters = [ "https://hyprland.cachix.org" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+  };
 
   programs.hyprland = {
     enable = true;
@@ -28,17 +28,17 @@ in
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
-  # # Use Hyprland's Mesa version
-  # hardware.graphics = {
-  #   package = pkgs-hyprland.mesa;
-  #   package32 = pkgs-hyprland.pkgsi686Linux.mesa;
-  # };
+  # Use Hyprland's Mesa version
+  hardware.graphics = {
+    package = pkgs-hyprland.mesa;
+    package32 = pkgs-hyprland.pkgsi686Linux.mesa;
+  };
 
-  # # Screensharing
-  # xdg.portal = {
-  #   enable = true;
-  #   extraPortals = with pkgs-hyprland; [ xdg-desktop-portal-hyprland ];
-  # };
+  # Screensharing
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs-hyprland; [ xdg-desktop-portal-hyprland ];
+  };
 
   # Optional auto-login instead of Noctalia greeter
   # services.greetd = {
