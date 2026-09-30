@@ -239,8 +239,8 @@ in
           # Noctalia brightness/volume keybinds
           (mkRepeatBindIPC "SUPER + UP" "volume-up")
           (mkRepeatBindIPC "SUPER + DOWN" "volume-down")
-          (mkRepeatBindIPC "XF86AudioRaiseVolume" "volume-up")
-          (mkRepeatBindIPC "XF86AudioLowerVolume" "volume-down")
+          (mkBindIPC "XF86AudioRaiseVolume" "volume-up")
+          (mkBindIPC "XF86AudioLowerVolume" "volume-down")
           (mkRepeatBindIPC "SUPER + RIGHT" "brightness-up")
           (mkRepeatBindIPC "SUPER + LEFT" "brightness-down")
 
