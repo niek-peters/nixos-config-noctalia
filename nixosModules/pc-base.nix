@@ -61,6 +61,7 @@
       "video"
       "render"
       "input"
+      "docker"
     ];
     packages = with pkgs; [ ];
   };

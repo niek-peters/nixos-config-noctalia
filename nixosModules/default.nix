@@ -6,5 +6,6 @@
     ./productivity.nix
     ./garbage.nix
     ./gaming.nix
+    ./dev.nix
   ];
 }
