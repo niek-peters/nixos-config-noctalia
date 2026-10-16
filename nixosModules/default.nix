@@ -7,5 +7,6 @@
     ./garbage.nix
     ./gaming.nix
     ./dev.nix
+    ./tailscale.nix
   ];
 }
