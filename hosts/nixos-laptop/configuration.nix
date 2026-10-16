@@ -9,6 +9,9 @@
     vpl-gpu-rt
     # intel-ocl
   ];
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  };
 
   # for screen rotation in tablet mode
   hardware.sensor.iio.enable = true;
