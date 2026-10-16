@@ -3,6 +3,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # intel graphics
+  hardware.graphics.extraPackages = with pkgs; [
+    intel-media-driver
+    vpl-gpu-rt
+    # intel-ocl
+  ];
+
   # for screen rotation in tablet mode
   hardware.sensor.iio.enable = true;
   # programs.iio-hyprland.enable = true;
