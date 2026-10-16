@@ -7,10 +7,12 @@
   hardware.graphics.extraPackages = with pkgs; [
     intel-media-driver
     vpl-gpu-rt
+    libvdpau-va-gl
     # intel-ocl
   ];
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
+    SDL_VIDEODRIVER = "wayland";
   };
 
   # for screen rotation in tablet mode
